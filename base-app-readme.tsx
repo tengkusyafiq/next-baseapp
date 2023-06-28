@@ -1,4 +1,32 @@
-export const LP_GRID_ITEMS = [
+export const BASE_APP_README_ADDITIONAL = [
+  {
+    title: "Tailwind CSS",
+    description: (
+      <div>
+        <p>CSS framework packed with classes. </p>
+        <p>New generation of Bootstrap.</p>
+      </div>
+    ),
+    string_and_links: [
+      {
+        string: "What is this?",
+        link: "https://tailwindcss.com/",
+      },
+      {
+        string: "Docs",
+        link: "https://tailwindcss.com/docs/utility-first",
+      },
+      {
+        string: "Showcase",
+        link: "https://tailwindui.com/components/preview",
+      },
+    ],
+    icon: "https://cdn.cdnlogo.com/logos/t/58/tailwind-css.svg",
+  },
+]
+
+// this is the original list of showcase items
+export const BASE_APP_README_CONSTANT = [
   {
     title: "Next.js",
     description: "Fast by default, with config optimized for performance.",

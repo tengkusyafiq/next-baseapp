@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 
-import "../styles/tailwind.css"
+// These styles apply to every route in the application
+import '../styles/globals.css'
 
 export const metadata: Metadata = {
   // for SEO
