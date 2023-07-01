@@ -11,6 +11,18 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
   rewrites() {
     return []
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "static-00.iconduck.com",
+      },
+    ],
+  },
 })
 
 export default config
