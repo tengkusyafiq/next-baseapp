@@ -76,28 +76,26 @@ export default async function BaseAppMaterials() {
 
 export function BaseAppMaterialComponent(material: Material) {
   return (
-    <Link key={material.id} href={"/baseapp-materials/" + material.id}>
+    <div>
+      {/* <Link key={material.id} href={"/baseapp-materials/" + material.id}> */}
       <div key={material.title} className="flex flex-col items-center justify-center text-center">
         <div className="mb-4 flex h-10 w-10 items-center justify-center lg:h-12 lg:w-12">
           <Image src={material.icon} alt={material.title} width={"100"} height={"100"} />
         </div>
-        <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
-        <div className="mb-4 text-gray-500 dark:text-gray-400">
-          {material.description}
-          {/* loop over string_and_links and make an animated clickable badge */}
-          <div className="items-center space-x-2 pt-2">
-            <a
-              key={material.title}
-              href={"/"}
-              // also spacing between badges
-              className="inline-flex items-center rounded-full
+        <Link key={material.id} href={"/baseapp-materials/" + material.id}>
+          <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
+          <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
+        </Link>
+        {/* create a pill that will open a modal MaterialModal */}
+        <span
+          data-modal-toggle="defaultModal"
+          className="mt-2 inline-flex items-center rounded-full
                 bg-gray-100 px-3 py-0.5 text-sm font-medium text-gray-900 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-            >
-              Learn now (~{material.total_eta} minutes)
-            </a>
-          </div>
-        </div>
+        >
+          Learn now (~{material.total_eta} minutes)
+        </span>
+        {/* defaultModal */}
       </div>
-    </Link>
+    </div>
   )
 }
