@@ -1,7 +1,9 @@
+import { Modal } from "components/general/Modal/Modal"
 import { Metadata } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
+import { linkList } from "./[id]/page"
 
 export const metadata: Metadata = {
   title: "vimigo Next.js Base App",
@@ -44,9 +46,9 @@ export default async function BaseAppMaterials() {
   return (
     <>
       <Head>
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:image:width" modalContent="1200" />
+        <meta property="og:image:height" modalContent="630" />
+        <meta name="twitter:card" modalContent="summary_large_image" />
         <title>Next.js Base App</title>
       </Head>
       <section className="bg-white dark:bg-gray-900">
@@ -76,26 +78,41 @@ export default async function BaseAppMaterials() {
 
 export function BaseAppMaterialComponent(material: Material) {
   return (
-    <div>
-      {/* <Link key={material.id} href={"/baseapp-materials/" + material.id}> */}
-      <div key={material.title} className="flex flex-col items-center justify-center text-center">
-        <div className="mb-4 flex h-10 w-10 items-center justify-center lg:h-12 lg:w-12">
-          <Image src={material.icon} alt={material.title} width={"100"} height={"100"} />
-        </div>
-        <Link key={material.id} href={"/baseapp-materials/" + material.id}>
-          <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
-          <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
-        </Link>
-        {/* create a pill that will open a modal MaterialModal */}
-        <span
-          data-modal-toggle="defaultModal"
-          className="mt-2 inline-flex items-center rounded-full
+    <>
+      <div>
+        {/* <Link key={material.id} href={"/baseapp-materials/" + material.id}> */}
+        <div key={material.title} className="flex flex-col items-center justify-center text-center">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center lg:h-12 lg:w-12">
+            <Image src={material.icon} alt={material.title} width={"100"} height={"100"} />
+          </div>
+          <Link key={material.id} href={"/baseapp-materials/" + material.id}>
+            <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
+            <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
+          </Link>
+          {/* create a pill that will open a modal MaterialModal */}
+
+          <Modal
+            trigger={
+              <button
+                data-modal-target="defaultModal"
+                data-modal-toggle="defaultModal"
+                className="mt-2 inline-flex items-center rounded-full
                 bg-gray-100 px-3 py-0.5 text-sm font-medium text-gray-900 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-        >
-          Learn now (~{material.total_eta} minutes)
-        </span>
-        {/* defaultModal */}
+              >
+                Learn now (~{material.total_eta} minutes)
+              </button>
+            }
+            title={material.title}
+            description={material.description}
+            modalContent={linkList(material)}
+            closeContent={
+              <button className="inline-flex h-[35px] items-center justify-center rounded-[4px] bg-green4 px-[15px] font-medium leading-none text-green11 hover:bg-green5 focus:shadow-[0_0_0_2px] focus:shadow-green7 focus:outline-none">
+                OK
+              </button>
+            }
+          ></Modal>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

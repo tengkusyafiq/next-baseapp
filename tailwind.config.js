@@ -2,10 +2,13 @@
 const { pick, omit } = require("lodash")
 const colors = require("tailwindcss/colors")
 const defaultTheme = require("tailwindcss/defaultTheme")
+const { violet, blackA, mauve, green } = require('@radix-ui/colors');
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
+  mode: "jit",
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -17,6 +20,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // TODO: change into the design system colors
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",
@@ -29,8 +33,25 @@ module.exports = {
           800: "#1e40af",
           900: "#1e3a8a",
         },
+        secondary: {
+          50: "#fdf2f8",
+          100: "#fce7f3",
+          200: "#fbcfe8",
+          300: "#f9a8d4",
+          400: "#f472b6",
+          500: "#ec4899",
+          600: "#db2777",
+          700: "#be185d",
+          800: "#9d174d",
+          900: "#831843",
+        },
+        ...mauve,
+        ...violet,
+        ...green,
+        ...blackA,
       },
       fontFamily: {
+        // TODO: change into the design system fonts
         body: [
           "Inter",
           "ui-sans-serif",
@@ -67,6 +88,7 @@ module.exports = {
         ],
       },
       borderWidth: {
+        // TODO: change into the design system border width
         DEFAULT: "1px",
         0: "0",
         2: "2px",
@@ -81,6 +103,21 @@ module.exports = {
       minWidth: {
         ...defaultTheme.width,
       },
+    },
+    // default animation
+    keyframes: {
+      overlayShow: {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      },
+      contentShow: {
+        from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
+        to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+      },
+    },
+    animation: {
+      overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
   },
   plugins: [],
