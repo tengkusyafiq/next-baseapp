@@ -6,7 +6,7 @@ import Link from "next/link"
 import { linkList } from "./[id]/page"
 
 export const metadata: Metadata = {
-  title: "vimigo Next.js Base App",
+  title: "Next.js Base App",
 }
 
 export interface Material {
