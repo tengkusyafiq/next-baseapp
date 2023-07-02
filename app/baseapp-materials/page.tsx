@@ -46,9 +46,9 @@ export default async function BaseAppMaterials() {
   return (
     <>
       <Head>
-        <meta property="og:image:width" modalContent="1200" />
-        <meta property="og:image:height" modalContent="630" />
-        <meta name="twitter:card" modalContent="summary_large_image" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
         <title>Next.js Base App</title>
       </Head>
       <section className="bg-white dark:bg-gray-900">
