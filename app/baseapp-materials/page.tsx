@@ -48,7 +48,6 @@ export default async function BaseAppMaterials() {
       <Head>
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
         <title>Next.js Base App</title>
       </Head>
       <section className="bg-white dark:bg-gray-900">
@@ -61,6 +60,20 @@ export default async function BaseAppMaterials() {
               Jump start your new project with all essentials set up. If you are new to Next.js, check out the docs
               below.
             </p>
+            <div className="my-0 flex flex-col items-center justify-center sm:flex-row sm:space-x-4 sm:space-y-0">
+              <a
+                href="https://github.com/tengkusyafiq/next-baseapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-600"
+              >
+                Clone the repo
+              </a>
+              {/* <Image src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" alt="github" width="20" height="20" /> */}
+              <Link className="place-self-center" href="https://github.com/tengkusyafiq/next-baseapp">
+                <Image src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" alt="github" width="20" height="20" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -91,8 +104,6 @@ export function BaseAppMaterialComponent(material: Material) {
             <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
             <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
           </Link>
-          {/* create a pill that will open a modal MaterialModal */}
-
           <Modal
             trigger={
               <button
