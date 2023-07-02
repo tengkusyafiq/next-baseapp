@@ -142,7 +142,7 @@ const materials = [
   {
     id: 6,
     title: "zustand",
-    description: "",
+    description: "A simple state management library, for production.",
     string_and_links: [
       {
         string: "What is this?",
