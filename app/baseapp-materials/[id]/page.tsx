@@ -27,9 +27,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <Head>
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:image:width" modalContent="1200" />
+        <meta property="og:image:height" modalContent="630" />
+        <meta name="twitter:card" modalContent="summary_large_image" />
         <title>{material.title}</title>
       </Head>
       <section className="bg-white dark:bg-gray-900">
@@ -52,34 +52,40 @@ export default async function Page({ params }: Props) {
         className="
         mx-auto max-w-screen-xl justify-center place-self-center bg-white px-4 dark:bg-gray-900"
       >
-        <div className="items-center justify-center space-y-8">
-          {material.string_and_links.map((singleStringAndLink: any) => (
-            // create a card with rounded and shadow with title and random image, max 3 items per row, center on the page, animated on hover
-            <div
-              key={singleStringAndLink.string}
-              className="
-                    mb-4 overflow-hidden rounded-lg
-                    bg-white shadow-lg transition duration-200 ease-in-out hover:-translate-y-1
-                    hover:scale-105
-                    hover:shadow-2xl
-                    dark:bg-gray-900
-                "
-            >
-              <div className="px-6 py-4">
-                <div className="mb-2">{singleStringAndLink.string}</div>
-                <a
-                  href={singleStringAndLink.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  Learn in {singleStringAndLink.eta} minutes.
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+        {linkList(material)}
       </section>
     </>
+  )
+}
+
+export function linkList(material: Material) {
+  return (
+    <div className="items-center justify-center space-y-3">
+      {material.string_and_links.map((singleStringAndLink: any) => (
+        // create a card with rounded and shadow with title and random image, max 3 items per row, center on the page, animated on hover
+        <div
+          key={singleStringAndLink.string}
+          className="
+              mb-1 overflow-hidden rounded-lg
+              bg-white shadow-lg transition duration-200 ease-in-out hover:-translate-y-1
+              hover:scale-105
+              hover:shadow-2xl
+              dark:bg-gray-900
+          "
+        >
+          <div className="px-6 py-4">
+            <div className="mb-2">{singleStringAndLink.string}</div>
+            <a
+              href={singleStringAndLink.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              Learn in {singleStringAndLink.eta} minutes.
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }

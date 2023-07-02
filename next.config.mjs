@@ -19,6 +19,10 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
       },
       {
         protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
         hostname: "static-00.iconduck.com",
       },
     ],

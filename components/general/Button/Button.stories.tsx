@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Button } from "./Button"
 
 const meta: Meta<typeof Button> = {
-  title: "Button",
+  title: "General/Button",
   component: Button,
+  tags: ["autodocs"],
   args: {
     intent: "primary",
     underline: false,
-    children: "Button",
+    children: "Click me",
     size: "lg",
   },
   argTypes: {
@@ -20,12 +21,24 @@ const meta: Meta<typeof Button> = {
       control: { type: "select" },
     },
   },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "",
+    },
+  },
 }
 
 type Story = StoryObj<typeof Button>
 
-export const Default: Story = {
+// primary intent is the default
+export const Primary: Story = {
   render: (args) => <Button {...args} />,
+}
+
+// secondary intent
+export const Secondary: Story = {
+  render: (args) => <Button {...args} intent="secondary" />,
 }
 
 export default meta

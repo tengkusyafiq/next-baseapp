@@ -228,15 +228,32 @@ const materials = [
     ],
     icon: "https://www.logggos.club/logos/framer-motion.svg",
   },
+  {
+    id: 11,
+    title: "SST",
+    description: "",
+    string_and_links: [
+      {
+        string: "What is this?",
+        link: "https://tailwindcss.com/",
+        eta: 1, // in minutes
+      },
+      {
+        string: "Docs",
+        link: "https://tailwindcss.com/docs/utility-first",
+        eta: 1, // in minutes
+      },
+      {
+        string: "Showcase",
+        link: "https://tailwindui.com/components/preview",
+        eta: 1, // in minutes
+      },
+    ],
+    icon: "https://avatars.githubusercontent.com/u/66570915",
+  },
 ]
 
 // index API
 export async function GET() {
   return NextResponse.json(materials)
 }
-
-// // show API
-// export async function GET({ params }) {
-//   const material = materials.find((m) => m.id === params.id)
-//   return NextResponse.json(material)
-// }
