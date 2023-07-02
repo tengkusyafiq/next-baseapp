@@ -81,7 +81,7 @@ export function linkList(material: Material) {
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
-              Learn in {singleStringAndLink.eta} minutes.
+              (~ {singleStringAndLink.eta} minutes)
             </a>
           </div>
         </div>
