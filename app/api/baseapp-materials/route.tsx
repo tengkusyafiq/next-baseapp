@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-const materials = [
+export const materials = [
   {
     id: 1,
     title: "Typescript",

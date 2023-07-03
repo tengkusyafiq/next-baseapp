@@ -1,9 +1,10 @@
-import { Modal } from "components/general/Modal/Modal"
 import { Metadata } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
+import { Modal } from "components/general/Modal/Modal"
 import { linkList } from "./[id]/page"
+import { materials as data } from "../api/baseapp-materials/route"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",
@@ -23,14 +24,18 @@ export interface Material {
 }
 
 export async function getBaseAppMaterials() {
-  const res = await fetch("http://localhost:8888/api/baseapp-materials", { cache: "no-store" })
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
-  }
+  // const res = await fetch("http://localhost:8888/api/baseapp-materials", { cache: "no-store" })
+  // // Recommendation: handle errors
+  // if (!res.ok) {
+  //   // This will activate the closest `error.js` Error Boundary
+  //   throw new Error("Failed to fetch data")
+  // }
+  // const materials = (await res.json()) as Material[]
+
+  // use the const directly instead of the fetch
+  const materials = data as Material[]
+
   // calculate the total eta
-  const materials = (await res.json()) as Material[]
   materials.forEach((material: Material) => {
     material.total_eta = material.string_and_links.reduce(
       (total: number, current: { eta: number }) => total + current.eta,
