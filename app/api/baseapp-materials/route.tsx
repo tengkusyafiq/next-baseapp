@@ -98,22 +98,32 @@ export const materials = [
   },
   {
     id: 4,
-    title: "Radix UI",
+    title: "UI Kits (Daisy UI & Radix UI)",
     description:
-      "Don't start building your components from scratch. Use Radix UI to get started quickly, and customize from there. Only install what you need.",
+      "Don't start building your components or layout from scratch. Use Daisy UI to get started quickly, and customize from there. Need a complex components? Use Radix UI, it's light because you only install what you need.",
     string_and_links: [
       {
-        string: "Docs",
+        string: "Daisy UI Docs",
+        link: "https://daisyui.com/docs/customize/",
+        eta: 10, // in minutes
+      },
+      {
+        string: "Daisy UI Showcase",
+        link: "https://daisyui.com/components/",
+        eta: 1, // in minutes
+      },
+      {
+        string: "Radix UI Docs",
         link: "https://www.radix-ui.com/docs/primitives/overview/getting-started",
         eta: 10, // in minutes
       },
       {
-        string: "Showcase",
+        string: "Radix UI Showcase",
         link: "https://www.radix-ui.com/",
         eta: 1, // in minutes
       },
     ],
-    icon: "https://cdn.cdnlogo.com/logos/r/79/radix-ui.svg",
+    icon: "https://iili.io/HiwZ7rG.png",
   },
   {
     id: 7,
