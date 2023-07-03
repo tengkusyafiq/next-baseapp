@@ -1,7 +1,7 @@
 # Next.js Baseapp for product-ready project
 
 ## 🚀 Quick Start
-This is an opiniated baseapp for product-ready project to be used as a starting point for your project. To start, run the following commands in your terminal:
+This is an opinionated baseapp for product-ready project to be used as a starting point for your project. To start, run the following commands in your terminal:
 
 ```bash
 yarn install --frozen-lockfile
