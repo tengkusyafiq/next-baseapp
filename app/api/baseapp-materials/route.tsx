@@ -210,6 +210,11 @@ export const materials = [
         eta: 2, // in minutes
       },
       {
+        string: "Tutorial",
+        link: "https://dev.to/kumo/deploy-a-nextjs-app-for-free-on-aws-with-sst-3g28",
+        eta: 10, // in minutes
+      },
+      {
         string: "Docs",
         link: "https://sst.dev/",
         eta: 3, // in minutes
