@@ -2,7 +2,8 @@
 const { pick, omit } = require("lodash")
 const colors = require("tailwindcss/colors")
 const defaultTheme = require("tailwindcss/defaultTheme")
-const { violet, blackA, mauve, green } = require("@radix-ui/colors")
+const { violet, blackA, mauve, green } = require('@radix-ui/colors');
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -119,24 +120,7 @@ module.exports = {
       contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
   },
-  plugins: [require("daisyui")],
-  // daisyUI config (optional - here are the default values)
-  daisyui: {
-    themes: ["generalTheme"], // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "dark", // name of one of the included themes for dark mode
-    generalTheme: {
-      // TODO: change into the design system colors
-      primary: "#ed7a1c",
-      secondary: "#c32bdb",
-      accent: "#ef8e73",
-      neutral: "#191f29",
-      "base-100": "#faf9fb",
-      info: "#36a0c9",
-      success: "#4ad39a",
-      warning: "#efc261",
-      error: "#f52e66",
-    },
-  },
+  plugins: [],
   future: {
     hoverOnlyWhenSupported: true,
   },

@@ -25,10 +25,6 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
         protocol: "https",
         hostname: "static-00.iconduck.com",
       },
-      {
-        protocol: "https",
-        hostname: "iili.io",
-      },
     ],
   },
 })

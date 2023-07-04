@@ -32,34 +32,28 @@ export default async function Page({ params }: Props) {
         <meta name="twitter:card" content="summary_large_image" />
         <title>{material.title}</title>
       </Head>
-      <div className="bg-white dark:bg-gray-900">
-        <section className="bg-white dark:bg-gray-900">
-          <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
-            <div className="mx-auto items-center justify-center place-self-center pb-5">
-              <Image src={material.icon} alt={material.title} width={"150"} height={"150"} />
-            </div>
-            <div className="mx-auto place-self-center">
-              <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight text-black dark:text-white md:text-5xl xl:text-6xl">
-                {material.title}
-              </h1>
-              <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-                {material.description}
-              </p>
-            </div>
+      <section className="bg-white dark:bg-gray-900">
+        <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
+          <div className="mx-auto items-center justify-center place-self-center pb-5">
+            <Image src={material.icon} alt={material.title} width={"150"} height={"150"} />
           </div>
-        </section>
-        {/* this section will expand to the empty space down */}
-        <section
-          className="
-
-        mx-auto
-          max-w-screen-xl
-        justify-center place-self-center bg-white px-4 pb-16 dark:bg-gray-900
-        "
-        >
-          {linkList(material)}
-        </section>
-      </div>
+          <div className="mx-auto place-self-center">
+            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
+              {material.title}
+            </h1>
+            <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
+              {material.description}
+            </p>
+          </div>
+        </div>
+      </section>
+      {/* make this section in the middle of the page */}
+      <section
+        className="
+        mx-auto max-w-screen-xl justify-center place-self-center bg-white px-4 dark:bg-gray-900"
+      >
+        {linkList(material)}
+      </section>
     </>
   )
 }
@@ -80,7 +74,7 @@ export function linkList(material: Material) {
           "
         >
           <div className="px-6 py-4">
-            <div className=" mb-2 text-black">{singleStringAndLink.string}</div>
+            <div className="mb-2">{singleStringAndLink.string}</div>
             <a
               href={singleStringAndLink.link}
               target="_blank"

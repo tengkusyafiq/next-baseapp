@@ -58,7 +58,7 @@ export default async function BaseAppMaterials() {
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto place-self-center">
-            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight text-black dark:text-white md:text-5xl xl:text-6xl">
+            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               Next.js Base App
             </h1>
             <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
@@ -99,7 +99,7 @@ export function BaseAppMaterialComponent(material: Material) {
   return (
     <>
       <div>
-        <div key={material.title} className=" flex flex-col items-center justify-center text-center text-black">
+        <div key={material.title} className="flex flex-col items-center justify-center text-center">
           <Link key={material.id} href={navigate_to}>
             <div className="mb-4 flex h-10 w-10 items-center justify-center lg:h-12 lg:w-12">
               <Image src={material.icon} alt={material.title} width={"100"} height={"100"} />
