@@ -1,8 +1,11 @@
-import Head from "next/head"
+import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getBaseAppMaterials, Material } from "../page"
 
+export const metadata: Metadata = {
+  title: "Baseapp Materials",
+}
 interface Props {
   params: {
     id: number
@@ -26,12 +29,6 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <Head>
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <title>{material.title}</title>
-      </Head>
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto items-center justify-center place-self-center pb-5">

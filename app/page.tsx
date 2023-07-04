@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import BaseAppMaterials from "./baseapp-materials/page"
+import BaseAppMaterials from "./materials/page"
 
 export const metadata: Metadata = {
   title: "Home",

@@ -1,10 +1,8 @@
 import { Metadata } from "next"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { Modal } from "components/general/Modal/Modal"
 import { linkList } from "./[id]/page"
-import { materials as data } from "../api/baseapp-materials/route"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",
@@ -24,16 +22,13 @@ export interface Material {
 }
 
 export async function getBaseAppMaterials() {
-  // const res = await fetch("http://localhost:8888/api/baseapp-materials", { cache: "no-store" })
-  // // Recommendation: handle errors
-  // if (!res.ok) {
-  //   // This will activate the closest `error.js` Error Boundary
-  //   throw new Error("Failed to fetch data")
-  // }
-  // const materials = (await res.json()) as Material[]
-
-  // use the const directly instead of the fetch
-  const materials = data as Material[]
+  const res = await fetch(process.env.BASE_URL + "/api/materials", { cache: "no-store" })
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data")
+  }
+  const materials = (await res.json()) as Material[]
 
   // calculate the total eta
   materials.forEach((material: Material) => {
@@ -50,11 +45,6 @@ export default async function BaseAppMaterials() {
   const materials = await getBaseAppMaterials()
   return (
     <>
-      <Head>
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <title>Next.js Base App</title>
-      </Head>
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto place-self-center">
@@ -95,7 +85,7 @@ export default async function BaseAppMaterials() {
 }
 
 export function BaseAppMaterialComponent(material: Material) {
-  const navigate_to: string = "/baseapp-materials/" + material.id
+  const navigate_to: string = "/materials/" + material.id
   return (
     <>
       <div>
