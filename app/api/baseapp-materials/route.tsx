@@ -98,22 +98,22 @@ export const materials = [
   },
   {
     id: 4,
-    title: "Radix UI",
+    title: "shadcn/ui",
     description:
-      "Don't start building your components from scratch. Use Radix UI to get started quickly, and customize from there. Only install what you need.",
+      "Don't start building your components from scratch. Copy from shadcn/ui and customize from there. Only install what you need.",
     string_and_links: [
       {
         string: "Docs",
-        link: "https://www.radix-ui.com/docs/primitives/overview/getting-started",
+        link: "https://ui.shadcn.com/",
         eta: 10, // in minutes
       },
       {
         string: "Showcase",
-        link: "https://www.radix-ui.com/",
+        link: "https://ui.shadcn.com/examples/dashboard",
         eta: 1, // in minutes
       },
     ],
-    icon: "https://cdn.cdnlogo.com/logos/r/79/radix-ui.svg",
+    icon: "https://avatars.githubusercontent.com/u/124599",
   },
   {
     id: 7,
