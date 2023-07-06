@@ -30,7 +30,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
+      <section>
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto items-center justify-center place-self-center pb-5">
             <Image src={material.icon} alt={material.title} width={"150"} height={"150"} />
@@ -48,7 +48,7 @@ export default async function Page({ params }: Props) {
       {/* make this section in the middle of the page */}
       <section
         className="
-        mx-auto max-w-screen-xl justify-center place-self-center bg-white px-4 dark:bg-gray-900"
+        mx-auto max-w-screen-xl justify-center place-self-center"
       >
         {linkList(material)}
       </section>
