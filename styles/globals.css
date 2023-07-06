@@ -4,67 +4,83 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --ring: 215 20.2% 65.1%;
- 
+    /* Design System Color */
+    /* please use hsl format. convert it here: https://www.w3schools.com/colors/colors_converter.asp */
+    --normal-white: 0 0% 100%; /* #ffffff */
+    --light-gray-1: 210 40% 96.1%; /* #f1f5f9 */
+    --light-gray-2: 214.3 31.8% 91.4%; /* #e2e8f0 */
+    --light-gray-3: 210 40% 98%; /* #f8fafc */
+    --light-gray-4: 215 20.2% 65.1%; /* #94a3b8 */
+    --normal-gray: 215.4 16.3% 46.9%; /* #64748b */
+    --light-black-1: 222.2 47.4% 11.2%; /* #0f172a */
+    --light-black-2: 217.2 32.6% 17.5%; /* #1e293b */
+    --normal-black: 222.2 84% 4.9%; /* #020817 */
+    --light-red-1: 0 85.7% 97.3% /* #fef2f2 */
+    --normal-red: 0 84.2% 60.2%; /* #ef4444 */
+    --dark-red-1: 0 62.8% 30.6%; /* #7f1d1d */
+
+    /* standardized UI variables */
+    --background: var(--normal-white);
+    --foreground: var(--normal-black);
+
+    --muted: var(--light-gray-1);
+    --muted-foreground: var(--normal-gray);
+
+    --popover: var(--normal-white);
+    --popover-foreground: var(--normal-black);
+
+    --card: var(--normal-white);
+    --card-foreground: var(--normal-black);
+
+    --border: var(--light-gray-2);
+    --input: var(--light-gray-2);
+
+    --primary: var(--light-black-1);
+    --primary-foreground: var(--light-gray-3);
+
+    --secondary: var(--light-gray-1);
+    --secondary-foreground: var(--light-black-1);
+
+    --accent: var(--light-gray-1);
+    --accent-foreground: var(--light-black-1);
+
+    --destructive: var(--normal-red);
+    --destructive-foreground: var(--light-gray-3);
+
+    --ring: var(--light-gray-4);
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: var(--normal-black);
+    --foreground: var(--light-gray-3);
  
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: var(--light-black-2);
+    --muted-foreground: var(--light-gray-4);
  
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: var(--normal-black);
+    --popover-foreground: var(--light-gray-3);
  
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: var(--normal-black);
+    --card-foreground: var(--light-gray-3);
  
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: var(--light-black-2);
+    --input: var(--light-black-2);
  
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--light-gray-3);
+    --primary-foreground: var(--light-black-1);
  
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: var(--light-black-2);
+    --secondary-foreground: var(--light-gray-3);
  
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: var(--light-black-2);
+    --accent-foreground: var(--light-gray-3);
  
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
+    --destructive: var(--dark-red-1);
+    --destructive-foreground: var(--light-red-1);
  
-    --ring: 217.2 32.6% 17.5%;
+    --ring: var(--light-black-2);
   }
 }
  

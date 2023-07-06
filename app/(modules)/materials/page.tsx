@@ -58,7 +58,13 @@ export default async function BaseAppMaterials() {
               </a>
               {/* <Image src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" alt="github" width="20" height="20" /> */}
               <Link className="place-self-center" href="https://github.com/tengkusyafiq/next-baseapp">
-                <Image src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" alt="github" width="20" height="20" />
+                <Image
+                  className="dark:invert"
+                  src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg"
+                  alt="github"
+                  width="20"
+                  height="20"
+                />
               </Link>
             </div>
           </div>
