@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button/Button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog/Dialog"
 import { linkList } from "../[id]/page"
 import { MaterialType } from "../_types/MaterialType"

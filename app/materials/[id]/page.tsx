@@ -59,7 +59,7 @@ export default async function Page({ params }: Props) {
 export function linkList(material: MaterialType) {
   return (
     <div className="items-center justify-center space-y-3">
-      {material.string_and_links.map((singleStringAndLink: any) => (
+      {material.string_and_links.map((singleStringAndLink) => (
         // create a card with rounded and shadow with title and random image, max 3 items per row, center on the page, animated on hover
         <div
           key={singleStringAndLink.string}
