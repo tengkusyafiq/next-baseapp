@@ -55,6 +55,11 @@ export const materials = [
         eta: 13, // in minutes
       },
       {
+        string: "kebab-case for folders. PascalCase for files and their function.",
+        link: "https://medium.com/@mirazhs/naming-conventions-in-next-js-boosting-seo-and-code-maintainability-d4150fe7e6e",
+        eta: 2, // in minutes
+      },
+      {
         string: "Explore the Docs",
         link: "https://nextjs.org/docs",
         eta: 15, // in minutes

@@ -1,9 +1,9 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import MaterialDialog from "@/app/(modules)/materials/_components/MaterialDialog"
+import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import MaterialDialog from "./_components/MaterialDialog"
-import { MaterialType } from "./_types/MaterialType"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",
