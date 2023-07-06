@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { getBaseAppMaterials, Material } from "../page"
+import { MaterialType } from "../_types/MaterialType"
+import { getBaseAppMaterials } from "../page"
 
 export const metadata: Metadata = {
   title: "Baseapp Materials",
@@ -13,7 +14,7 @@ interface Props {
 }
 
 async function getABaseAppMaterial(id: number) {
-  const materials: Material[] = await getBaseAppMaterials()
+  const materials: MaterialType[] = await getBaseAppMaterials()
 
   const material = materials.find((singleItem) => singleItem.id.toString() === id.toString())
 
@@ -55,7 +56,7 @@ export default async function Page({ params }: Props) {
   )
 }
 
-export function linkList(material: Material) {
+export function linkList(material: MaterialType) {
   return (
     <div className="items-center justify-center space-y-3">
       {material.string_and_links.map((singleStringAndLink: any) => (

@@ -1,24 +1,12 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Modal } from "components/general/Modal/Modal"
-import { linkList } from "./[id]/page"
+import { ThemeButton } from "@/components/theme-control/theme-button"
+import MaterialDialog from "./_components/MaterialDialog"
+import { MaterialType } from "./_types/MaterialType"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",
-}
-
-export interface Material {
-  id: number
-  title: string
-  description: string
-  string_and_links: {
-    string: string
-    link: string
-    eta: number
-  }[]
-  icon: string
-  total_eta: number
 }
 
 export async function getBaseAppMaterials() {
@@ -28,10 +16,10 @@ export async function getBaseAppMaterials() {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data")
   }
-  const materials = (await res.json()) as Material[]
+  const materials = (await res.json()) as MaterialType[]
 
   // calculate the total eta
-  materials.forEach((material: Material) => {
+  materials.forEach((material: MaterialType) => {
     material.total_eta = material.string_and_links.reduce(
       (total: number, current: { eta: number }) => total + current.eta,
       0
@@ -46,6 +34,10 @@ export default async function BaseAppMaterials() {
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
+        {/* put ThemeButton on top right with padding */}
+        <div className="flex justify-end p-4">
+          <ThemeButton />
+        </div>
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto place-self-center">
             <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
@@ -76,7 +68,7 @@ export default async function BaseAppMaterials() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
             {/* render each materials */}
-            {materials.map((material: Material) => BaseAppMaterialComponent(material))}
+            {materials.map((material: MaterialType) => BaseAppMaterialComponent(material))}
           </div>
         </div>
       </section>
@@ -84,7 +76,7 @@ export default async function BaseAppMaterials() {
   )
 }
 
-export function BaseAppMaterialComponent(material: Material) {
+export function BaseAppMaterialComponent(material: MaterialType) {
   const navigate_to: string = "/materials/" + material.id
   return (
     <>
@@ -99,26 +91,7 @@ export function BaseAppMaterialComponent(material: Material) {
             <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
             <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
           </Link>
-          <Modal
-            trigger={
-              <button
-                data-modal-target="defaultModal"
-                data-modal-toggle="defaultModal"
-                className="mt-2 inline-flex items-center rounded-full
-                bg-gray-100 px-3 py-0.5 text-sm font-medium text-gray-900 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-              >
-                Learn now (~{material.total_eta} minutes)
-              </button>
-            }
-            title={material.title}
-            description={material.description}
-            modalContent={linkList(material)}
-            closeContent={
-              <button className="inline-flex h-[35px] items-center justify-center rounded-[4px] bg-green4 px-[15px] font-medium leading-none text-green11 hover:bg-green5 focus:shadow-[0_0_0_2px] focus:shadow-green7 focus:outline-none">
-                OK
-              </button>
-            }
-          ></Modal>
+          <MaterialDialog material={material} />
         </div>
       </div>
     </>

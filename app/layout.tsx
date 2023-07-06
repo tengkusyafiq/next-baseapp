@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { ThemeProvider } from "@/components/theme-control/theme-provider"
 
 // These styles apply to every route in the application
 import "../styles/globals.css"
@@ -22,7 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { Modal } from "./Modal"
 
 const meta: Meta<typeof Modal> = {
-  title: "General/Modal",
+  title: "UI/Modal",
   component: Modal,
   tags: ["autodocs"],
   args: {},
