@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server"
-
 export const materials = [
   {
     id: 1,
@@ -55,8 +53,9 @@ export const materials = [
         eta: 13, // in minutes
       },
       {
-        string: "kebab-case for folders. PascalCase for files and their function.",
-        link: "https://medium.com/@mirazhs/naming-conventions-in-next-js-boosting-seo-and-code-maintainability-d4150fe7e6e",
+        string:
+          "kebab-case for folders. PascalCase for files and component names, type, enum, class, interface. camelCase for variables and functions.",
+        link: "https://gist.github.com/anichitiandreea/e1d466022d772ea22db56399a7af576b#naming-conventions",
         eta: 2, // in minutes
       },
       {
@@ -228,8 +227,3 @@ export const materials = [
     icon: "https://avatars.githubusercontent.com/u/66570915",
   },
 ]
-
-// index API
-export async function GET() {
-  return NextResponse.json(materials)
-}
