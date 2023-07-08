@@ -5,24 +5,18 @@ module.exports = {
   extends: [
     "next",
     "prettier",
-    "eslint:recommended",
+    "react-app",
+    "react-app/jest",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
     "plugin:storybook/recommended",
     "plugin:tailwindcss/recommended",
   ],
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
-  root: true,
   parserOptions: {
     babelOptions: {
       presets: [require.resolve("next/babel")],
     },
-    project: "tsconfig.json",
   },
   rules: {
-    "@typescript-eslint/naming-convention": "error",
     "testing-library/prefer-screen-queries": "off",
     "@next/next/no-html-link-for-pages": "off",
     "@typescript-eslint/no-unused-vars": [
