@@ -5,13 +5,13 @@ import MaterialDialog from "@/app/(modules)/materials/_components/MaterialDialog
 import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { materials as mock_data } from "@/public/mock-data/materials"
+import { Button } from "@/components/ui/button/Button"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",
 }
 
 export async function getBaseAppMaterials() {
-
   const materials = mock_data as MaterialType[]
 
   // calculate the total eta
@@ -29,10 +29,16 @@ export default async function BaseAppMaterials() {
   const materials = await getBaseAppMaterials()
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="">
         {/* put ThemeButton on top right with padding */}
         <div className="flex justify-end p-4">
           <ThemeButton />
+          {/* button to go to example /posts */}
+          <div className="pl-4">
+            <Link href="/posts">
+              <Button>See example</Button>
+            </Link>
+          </div>
         </div>
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <div className="mx-auto place-self-center">
@@ -52,7 +58,6 @@ export default async function BaseAppMaterials() {
               >
                 Clone the repo
               </a>
-              {/* <Image src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" alt="github" width="20" height="20" /> */}
               <Link className="place-self-center" href="https://github.com/tengkusyafiq/next-baseapp">
                 <Image
                   className="dark:invert"
@@ -66,7 +71,7 @@ export default async function BaseAppMaterials() {
           </div>
         </div>
       </section>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
             {/* render each materials */}
