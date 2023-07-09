@@ -1,12 +1,7 @@
 "use client"
 
-import { Metadata } from "next"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import EditBlock from "../_components/EditBlock"
-
-export const metadata: Metadata = {
-  title: "Posts",
-}
 
 export default function Page() {
   return (
