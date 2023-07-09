@@ -1,6 +1,7 @@
 "use client"
 
 import { ThemeButton } from "@/components/theme-control/theme-button"
+import { Button } from "@/components/ui/button/Button"
 import EditBlock from "../_components/EditBlock"
 
 export default function Page() {
@@ -21,6 +22,12 @@ export default function Page() {
       </section>
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
+          {/* put button on the right */}
+          <div className="flex justify-end pb-4">
+            <Button size={"sm"} variant={"secondary"}>
+              Save
+            </Button>
+          </div>
           <div className="justify-center space-y-8">
             <EditBlock />
           </div>
