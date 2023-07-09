@@ -74,6 +74,7 @@
     "@semantic-release/npm": "^10.0.3",
     "@semantic-release/release-notes-generator": "^11.0.1",
     "@t3-oss/env-nextjs": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.9",
     "@vercel/otel": "^0.3.0",
     "@yarnpkg/plugin-dlx": "^4.0.0-rc.46",
     "class-variance-authority": "^0.6.1",
