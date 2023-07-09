@@ -1,12 +1,14 @@
+"use client"
+
 import { Metadata } from "next"
-// import ContentBlock from "@/app/(modules)/posts/_components/ContentBlock"
 import { ThemeButton } from "@/components/theme-control/theme-button"
+import EditBlock from "../_components/EditBlock"
 
 export const metadata: Metadata = {
   title: "Posts",
 }
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <section className="">
@@ -24,7 +26,9 @@ export default async function Page() {
       </section>
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <div className="justify-center space-y-8">{/*<ContentBlock />*/}</div>
+          <div className="justify-center space-y-8">
+            <EditBlock />
+          </div>
         </div>
       </section>
     </>

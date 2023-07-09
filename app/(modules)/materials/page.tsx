@@ -4,8 +4,8 @@ import Link from "next/link"
 import MaterialDialog from "@/app/(modules)/materials/_components/MaterialDialog"
 import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { materials as mock_data } from "@/public/mock-data/materials"
 import { Button } from "@/components/ui/button/Button"
+import { materials as mock_data } from "@/public/mock-data/materials"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",

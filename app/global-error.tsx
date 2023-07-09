@@ -1,6 +1,6 @@
 "use client"
 
-export default function GlobalError({}: { _error: Error; _reset: () => void }) {
+export default function GlobalError({ _error }: { _error: Error; _reset: () => void }) {
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <div className="text-6xl font-bold">500</div>
