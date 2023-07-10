@@ -11,13 +11,15 @@ export const env = createEnv({
       .enum(["true", "false"])
       .optional()
       .transform((value) => value === "true"),
-    BASE_URL: z.string().url(),
+    BASE_API_URL: z.string().url(),
+    NEXT_PUBLIC_BASE_API_URL: z.string().url(),
   },
   /** All client side env variables */
   client: {},
   /** All runtime env variables as listed above*/
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
-    BASE_URL: process.env.BASE_URL,
+    BASE_API_URL: process.env.BASE_API_URL,
+    NEXT_PUBLIC_BASE_API_URL: process.env.NEXT_PUBLIC_BASE_API_URL,
   },
 })

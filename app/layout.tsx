@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-control/theme-provider"
+import { Toaster } from "@/components/ui/toast/toaster"
 
 // These styles apply to every route in the application
 import "../styles/globals.css"
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   )

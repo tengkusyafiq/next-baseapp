@@ -3,8 +3,14 @@
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
 import EditBlock from "../_components/EditBlock"
+import { useCreatePost } from "../_data/post-client"
+import { PostType, usePostStore } from "../_types/PostType"
 
 export default function Page() {
+  // from local store
+  const getPost = usePostStore((state: any) => state.post)
+  const setPost = usePostStore((state: any) => state.setPost)
+
   return (
     <>
       <section className="">
@@ -24,7 +30,7 @@ export default function Page() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           {/* put button on the right */}
           <div className="flex justify-end pb-4">
-            <Button size={"sm"} variant={"secondary"}>
+            <Button size={"sm"} variant={"secondary"} onClick={useCreatePost(getPost as PostType)}>
               Save
             </Button>
           </div>

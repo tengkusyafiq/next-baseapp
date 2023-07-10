@@ -1,11 +1,23 @@
 import { Metadata } from "next"
 import { ThemeButton } from "@/components/theme-control/theme-button"
+import PostComponent from "../_components/PostComponent"
+import { getOne } from "../_data/post-server"
+import ContentBlock from "../_components/ContentBlock"
 
 export const metadata: Metadata = {
   title: "Posts",
 }
 
-export default async function Page() {
+interface Props {
+  params: {
+    id: number
+  }
+}
+
+export default async function Page({ params }: Props) {
+  // get all posts using getAll from post-server
+  const post = await getOne(params.id)
+
   return (
     <>
       <section className="">
@@ -23,8 +35,9 @@ export default async function Page() {
       </section>
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-            {/* render each posts */}
+          <div className="justify-center space-y-8">
+            {/* render one post */}
+            <ContentBlock post={post!} />
           </div>
         </div>
       </section>
