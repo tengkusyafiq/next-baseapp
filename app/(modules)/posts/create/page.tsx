@@ -2,7 +2,7 @@
 
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
-import EditBlock from "../_components/EditBlock"
+import EditBlock from "../_components/client-components/EditBlock"
 import { useCreatePost } from "../_data/post-client"
 import { PostType, usePostStore } from "../_types/PostType"
 

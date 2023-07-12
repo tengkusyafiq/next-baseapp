@@ -1,9 +1,10 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import { Suspense } from "react"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
-import PostComponent from "./_components/PostComponent"
-import { getAll } from "./_data/post-server"
+import PostList from "./_components/client-components/PostList"
+import { getAll } from "./_data/post-api"
 import { PostType } from "./_types/PostType"
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  // get all posts using getAll from post-server
+  // get all posts using getAll from post-api
   const posts = await getAll()
   return (
     <>
@@ -25,7 +26,7 @@ export default async function Page() {
             <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               Knowledgebase 📖
             </h1>
-            <Link href="/posts/create">
+            <Link prefetch={false} href="/posts/create">
               {/* New post button */}
               <Button>New ✏️</Button>
             </Link>
@@ -34,10 +35,9 @@ export default async function Page() {
       </section>
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-            {/* render each posts */}
-            {posts.map((post: PostType) => PostComponent({ post }))}
-          </div>
+          <Suspense fallback={<p>Loading feed...</p>}>
+            <PostList posts={posts as PostType[]} />
+          </Suspense>
         </div>
       </section>
     </>

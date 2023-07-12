@@ -1,61 +1,137 @@
-import axios from "axios"
+// import { revalidateTag } from "next/cache" // TODO: disabled until vercel fix this
 import { PostType } from "../_types/PostType"
 
-// create an axios instance with base url and bearer token from env
 export const endpoint = process.env.NEXT_PUBLIC_BASE_API_URL + "/posts"
-const api = axios.create({
-  baseURL: endpoint,
-  headers: {
-    Authorization: `Bearer ${process.env.BASE_API_KEY}`,
-  },
-})
+export const headers = {
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_BASE_API_KEY}`,
+  "Content-Type": "application/json",
+  "Cache-Control": "no-cache",
+}
 
-export const getAll = async () => {
-  const response = await api.get(endpoint)
+export const fetchSetting = {
+  headers,
+  next: {
+    revalidate: 0, // revalidate every 5 seconds
+    tags: [endpoint], // revalidate all items when one post is mutated
+  },
+}
+
+/** getAll with params search, page, limit. will return PostType[] */
+export const getAll = async (search?: string, page?: number, limit?: number) => {
+  // prepare query params
+  const params = new URLSearchParams()
+  if (search) params.append("search", search)
+  if (page) params.append("page", page.toString())
+  if (limit) params.append("limit", limit.toString())
+
+  // fetch data no cache
+  const response = await fetch(`${endpoint}?${params}`, fetchSetting)
+
+  // handle error
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  const data = await response.json()
   // cast response to PostType[] if not null or empty
-  if (response.data) {
-    return response.data as PostType[]
+  if (data) {
+    return data as PostType[]
   }
   return []
 }
 
+/** getOne with params id. will return PostType */
 export const getOne = async (id: number) => {
-  const response = await api.get(`${endpoint}/${id}`)
+  // fetch data
+  const response = await fetch(`${endpoint}/${id}`, fetchSetting)
+
+  // handle error
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  const data = await response.json()
   // cast response to PostType if not null
-  if (response.data) {
-    return response.data as PostType
+  if (data) {
+    return data as PostType
   }
   return null
 }
 
+/** createOne with params data. will return PostType */
 export const createOne = async (data: PostType) => {
-  // create new post
-  const body =
-    {
-      title: data.title,
-      jsonBody: encodeURI(data.jsonBody),
-    }
+  // create new post. the post might have file
+  const prepareBody = JSON.stringify({
+    title: data.title,
+    jsonBody: data.jsonBody,
+  })
 
-  const response = await api.post("/", body)
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers,
+    body: prepareBody,
+  })
 
+  // handle error
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  const res = await response.json()
   // cast response to PostType if not null
-  if (response.data) {
-    return response.data as PostType
+  if (res) {
+    // revalidateTag(endpoint)
+    return res as PostType
   }
   return null
 }
 
+/** updateOne with params id, data. will return PostType */
 export const updateOne = async (id: number, data: PostType) => {
-  const response = await api.put(`${endpoint}/${id}`, data)
+  // update post
+  const body = {
+    title: data.title,
+    jsonBody: data.jsonBody,
+  }
+
+  const response = await fetch(`${endpoint}/${id}`, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+  })
+
+  // handle error
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  const res = await response.json()
   // cast response to PostType if not null
-  if (response.data) {
-    return response.data as PostType
+  if (res) {
+    // revalidateTag(endpoint)
+    return res as PostType
   }
   return null
 }
 
-export const removeOne = async (id: number) => {
-  const response = await api.delete(`${endpoint}/${id}`)
-  // boolean response
-  return response.data
+/** deleteOne with params id. will return true */
+export const deleteOne = async (id: number) => {
+  // delete post
+  const response = await fetch(`${endpoint}/${id}`, {
+    method: "DELETE",
+    headers,
+  })
+
+  // handle error
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  const res = await response.json()
+  // cast response to PostType if not null
+  if (res) {
+    // revalidateTag(endpoint)
+    return true
+  }
+  return false
 }

@@ -4,20 +4,24 @@ import { persist } from "zustand/middleware"
 export type PostType = {
   id: number
   title: string
-  jsonBody: string
+  jsonBody: JSON
 }
 
 export const usePostStore = create(
   persist(
-    (set, get) => ({
+    (set) => ({
+      // storage: to store current post
       post: null as PostType | null,
+      // action: to set current post
       setPost: (updatedPost: PostType) => {
-        set((state: any) => ({
+        set(() => ({
           post: updatedPost,
         }))
       },
+      // action: to clear current post
       clearPost: () => set({ post: null }),
     }),
+    // key: to store in localStorage
     { name: "post" }
   )
 )

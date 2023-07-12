@@ -1,6 +1,6 @@
 "use client"
 
-import editorjsNestedChecklist from '@calumk/editorjs-nested-checklist';
+import editorjsNestedChecklist from "@calumk/editorjs-nested-checklist"
 import CheckList from "@editorjs/checklist"
 import Code from "@editorjs/code"
 import Delimiter from "@editorjs/delimiter"
@@ -17,15 +17,15 @@ import Table from "@editorjs/table"
 import Alert from "editorjs-alert"
 import Header from "editorjs-header-with-alignment"
 // import InlineTools from "editorjs-inline-tool"
- import Paragraph from "editorjs-paragraph-with-alignment"
-import ColorPlugin from 'editorjs-text-color-plugin';
+import Paragraph from "editorjs-paragraph-with-alignment"
+import ColorPlugin from "editorjs-text-color-plugin"
 // import ToggleBlock from 'editorjs-toggle-block';
 // import AttachesTool from '@editorjs/attaches';
 
 export const EDITOR_TOOLS = {
   header: {
     class: Header,
-    inlineToolbar: ["link"],
+    inlineToolbar: true,
   },
   paragraph: {
     class: Paragraph,
@@ -58,6 +58,5 @@ export const EDITOR_TOOLS = {
   //       endpoint: 'http://localhost:8008/uploadFile'
   //     }
   //   }
-  nestedchecklist : editorjsNestedChecklist,
-
+  nestedchecklist: editorjsNestedChecklist,
 }

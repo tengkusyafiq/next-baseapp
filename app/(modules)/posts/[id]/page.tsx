@@ -1,8 +1,12 @@
 import { Metadata } from "next"
+import Link from "next/link"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import PostComponent from "../_components/PostComponent"
-import { getOne } from "../_data/post-server"
-import ContentBlock from "../_components/ContentBlock"
+import { Button } from "@/components/ui/button/Button"
+import ContentBlock from "../_components/client-components/ContentBlock"
+import DeletePostButton from "../_components/client-components/DeletePostButton"
+import { getOne } from "../_data/post-api"
+import { usePostStore } from "../_types/PostType"
+import EditBlock from "../_components/client-components/EditBlock"
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -15,7 +19,6 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  // get all posts using getAll from post-server
   const post = await getOne(params.id)
 
   return (
@@ -36,8 +39,24 @@ export default async function Page({ params }: Props) {
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8">
-            {/* render one post */}
-            <ContentBlock post={post!} />
+            {post && (
+              <div>
+                {/* put buttons on the right */}
+                <div className="mb-4 flex justify-end">
+                  <Link prefetch={false} href={`/posts/${post.id}/edit`}>
+                    <Button variant={"outline"} className="ml-2">
+                      Edit
+                    </Button>
+                  </Link>
+                  <Link prefetch={false} href="/posts/">
+                    <DeletePostButton post={post} />
+                  </Link>
+                </div>
+                <div className="justify-center space-y-8">{<EditBlock post={post} readOnly={true} />}</div>
+
+                {/* <ContentBlock post={post} /> */}
+              </div>
+            )}
           </div>
         </div>
       </section>
