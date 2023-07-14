@@ -3,8 +3,7 @@ import { persist } from "zustand/middleware"
 
 export type PostType = {
   id: number
-  title: string
-  jsonBody: JSON
+  content: string
 }
 
 export const usePostStore = create(

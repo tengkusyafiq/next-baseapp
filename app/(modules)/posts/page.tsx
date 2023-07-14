@@ -1,19 +1,14 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { Suspense } from "react"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
 import PostList from "./_components/client-components/PostList"
-import { getAll } from "./_data/post-api"
-import { PostType } from "./_types/PostType"
 
 export const metadata: Metadata = {
   title: "Posts",
 }
 
 export default async function Page() {
-  // get all posts using getAll from post-api
-  const posts = await getAll()
   return (
     <>
       <section className="">
@@ -35,9 +30,7 @@ export default async function Page() {
       </section>
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <Suspense fallback={<p>Loading feed...</p>}>
-            <PostList posts={posts as PostType[]} />
-          </Suspense>
+          <PostList />
         </div>
       </section>
     </>

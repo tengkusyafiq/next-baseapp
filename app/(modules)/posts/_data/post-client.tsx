@@ -1,196 +1,217 @@
 "use client"
-import { useState } from "react"
+import axios from "axios"
 import useSWR from "swr"
-import { createOne, deleteOne, endpoint, getAll, updateOne } from "@/app/(modules)/posts/_data/post-api"
 import { useToast } from "@/components/ui/toast/use-toast"
 import { PostType } from "../_types/PostType"
 
-export const PostClientList = () => {
-  const { toast } = useToast()
-  const [newPost, setNewPost] = useState("")
+// create an axios instance with base url and bearer token from env
+export const endpoint = process.env.NEXT_PUBLIC_BASE_API_URL + "/posts"
+export const headers = {
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_BASE_API_KEY}`,
+  "Content-Type": "application/json",
+  "Cache-Control": "no-cache",
+}
 
-  const { isLoading, error, data: posts, mutate } = useSWR(endpoint, getAll, {})
+const api = axios.create({
+  baseURL: endpoint,
+  headers: headers,
+})
 
-  const createPostMutation = async (newPost: PostType) => {
-    try {
-      // trigger error if body is empty
-      if (newPost.jsonBody === undefined) {
-        throw new Error("Post body cannot be empty.")
-      }
-      // sync with server and update cache
-      await createOne(newPost)
-      mutate()
-
-      // show toast
-      toast({
-        title: "Post created! 🎉",
-        description: "We've created your post for you.",
-      })
-    } catch (error) {
-      // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error creating post 😢",
-        description: "Something went wrong.",
-      })
-    }
+export const fetcher = async () => {
+  const response = await api.get(endpoint)
+  // cast response to PostType[] if not null or empty
+  if (response.data) {
+    return response.data
   }
-
-  const updatePostMutation = async (updatedPost: PostType) => {
-    try {
-      // sync with server and update cache
-      await updateOne(updatedPost.id, updatedPost)
-      mutate()
-
-      // show toast
-      toast({
-        title: "Post updated! 🎉",
-        description: "We've updated your post for you.",
-      })
-    } catch (error) {
-      // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error updating post 😢",
-        description: "Something went wrong.",
-      })
-    }
-  }
-
-  const removePostMutation = async (id: number) => {
-    try {
-      // sync with server and update cache
-      await deleteOne(id)
-      mutate()
-
-      // show toast
-      toast({
-        title: "Post removed! 🎉",
-        description: "We've removed your post for you.",
-      })
-    } catch (error) {
-      // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error removing post 😢",
-        description: "Something went wrong.",
-      })
-    }
-  }
+  return []
 }
 
 /** to get all posts, with param search, pagination, limit*/
-export const useGetAllPosts = () => {
-  const { data: posts, error, mutate } = useSWR(endpoint, getAll, {})
-  return { posts, error, mutate }
+export const useGetAllPosts = ({ search, page, limit }: { search?: string; page?: number; limit?: number } = {}) => {
+  // prepare query params
+  const params = new URLSearchParams()
+  if (search) params.append("search", search)
+  if (page) params.append("page", page.toString())
+  if (limit) params.append("limit", limit.toString())
+
+  const {
+    data: posts,
+    error,
+    isLoading,
+    isValidating,
+    mutate,
+  } = useSWR<PostType[]>(`${endpoint}?${params}`, fetcher, {})
+  return { posts, error, isLoading, isValidating, mutate }
 }
 
 /** to get a post */
 export const useGetPost = (id: number) => {
-  const { data: post, error, mutate } = useSWR(endpoint + "/" + id, getAll, {})
-  return { post, error, mutate }
+  // custom fetcher to get a single post
+  const singleEndpoint = endpoint + "/" + id
+  const fetcher = async () => {
+    const response = await api.get(singleEndpoint)
+    // cast response to PostType if not null or empty
+    if (response.data) {
+      return response.data
+    }
+    return null
+  }
+
+  const { data: post, error, isLoading, isValidating, mutate } = useSWR<PostType>(singleEndpoint, fetcher, {})
+  return { post, error, isLoading, isValidating, mutate }
 }
 
 /** to create a post */
 export const useCreatePost = (newPost: PostType) => {
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, getAll, {})
+  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { posts } = useGetAllPosts()
 
-  const createPostMutation = async () => {
+  const job = async () => {
     try {
       // trigger error if body is empty
-      if (newPost.jsonBody === undefined) {
-        // TODO: dunno why, if use header, it will become undefined
+      if (newPost.content === undefined) {
         throw new Error("Post body cannot be empty.")
       }
+
+      // create new post. the post might have file
+      const prepareBody = JSON.stringify({
+        content: newPost.content,
+      })
+
       // sync with server and update cache
-      await createOne(newPost)
-      mutate()
+      await api
+        .post("", prepareBody)
+        // if success, get the new post
+        .then((res) => {
+          newPost = res.data as PostType
+        })
+        // if error, catch it
+        .catch((error) => {
+          throw new Error(error.message)
+        })
+
+      // prepare optimistic update list
+      const optimisticList = [...(posts ?? []), newPost]
+
+      // mutate with optimistic update and rollback if error
+      mutate(optimisticList, {
+        optimisticData: optimisticList,
+        revalidate: false, // disable revalidate
+        populateCache: true, // populate cache with optimistic list
+        rollbackOnError: true, // rollback if error
+      })
 
       // show toast
-      toast({
-        title: "Post created! 🎉",
-        description: "We've created your post for you.",
-      })
+      toast({ duration: 1000, title: "Post created! 🎉", description: "We've created your post for you." })
     } catch (error: unknown) {
       let description = "Something went wrong."
       if (error instanceof Error) {
         description = error.message ?? "Something went wrong."
       }
       // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error creating post 😢",
-        description: description,
-      })
+      // only show for 1 second
+      toast({ duration: 1000, title: "Error creating post 😢", description: description })
       console.error("error creating post", error)
     }
-    return null
   }
 
-  return createPostMutation
+  return job
 }
 
 /** to update a post */
 export const useUpdatePost = (updatedPost: PostType) => {
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, getAll, {})
+  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { posts } = useGetAllPosts()
 
-  const updatePostMutation = async () => {
+  const job = async () => {
     try {
       // sync with server and update cache
-      await updateOne(updatedPost.id, updatedPost)
-      mutate()
+      await api
+        .put(`${endpoint}/${updatedPost.id}`, updatedPost)
+        // if success, get the new post
+        .then((res) => {
+          updatedPost = res.data as PostType
+        })
+        // if error, catch it
+        .catch((error) => {
+          throw new Error(error.message)
+        })
+
+      // prepare optimistic update list (remove existing post and add new post at the same index)
+      const optimisticList = [...(posts ?? [])]
+      const index = optimisticList.findIndex((obj) => obj.id === updatedPost.id)
+      optimisticList.splice(index, 1, updatedPost)
+
+      // mutate with optimistic update and rollback if error
+      mutate(optimisticList, {
+        optimisticData: optimisticList,
+        revalidate: false, // disable revalidate
+        populateCache: true, // populate cache with optimistic list
+        rollbackOnError: true, // rollback if error
+      })
 
       // show toast
-      toast({
-        title: "Post updated! 🎉",
-        description: "We've updated your post for you.",
-      })
+      toast({ duration: 1000, title: "Post updated! 🎉", description: "We've updated your post for you." })
     } catch (error: unknown) {
       let description = "Something went wrong."
       if (error instanceof Error) {
         description = error.message ?? "Something went wrong."
       }
       // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error updating post 😢",
-        description: description,
-      })
+      toast({ duration: 1000, title: "Error updating post 😢", description: description })
       console.error("error updating post", error)
     }
     return null
   }
 
-  return updatePostMutation
+  return job
 }
 
 /** to delete a post */
 export const useDeletePost = (id: number) => {
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, getAll, {})
+  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { posts } = useGetAllPosts()
 
-  const removePostMutation = async () => {
+  const job = async () => {
     try {
       // sync with server and update cache
-      await deleteOne(id)
-      mutate()
+      await api
+        .delete(`${endpoint}/${id}`)
+        // if success, get the new post
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .then((res) => null)
+        // if error, catch it
+        .catch((error) => {
+          throw new Error(error.message)
+        })
+
+      // prepare optimistic update list (remove existing post)
+      const optimisticList = [...(posts ?? [])].filter((obj) => obj.id !== id)
+
+      // mutate with optimistic update and rollback if error
+      mutate(optimisticList, {
+        optimisticData: optimisticList,
+        revalidate: false, // disable revalidate
+        populateCache: true, // populate cache with optimistic list
+        rollbackOnError: true, // rollback if error
+      })
 
       // show toast
-      toast({
-        title: "Post removed! 🎉",
-        description: "We've removed your post for you.",
-      })
+      toast({ duration: 1000, title: "Post removed! 🎉", description: "We've removed your post for you." })
     } catch (error: unknown) {
       let description = "Something went wrong."
       if (error instanceof Error) {
         description = error.message ?? "Something went wrong."
       }
       // get error message if it exists, otherwise show generic message
-      toast({
-        title: "Error removing post 😢",
-        description: description,
-      })
+      toast({ duration: 1000, title: "Error removing post 😢", description: description })
       console.error("error removing post", error)
     }
     return null
   }
 
-  return removePostMutation
+  return job
 }

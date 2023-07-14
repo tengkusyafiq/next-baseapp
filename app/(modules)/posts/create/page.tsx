@@ -1,8 +1,9 @@
 "use client"
 
+import { debounce } from "lodash"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
-import EditBlock from "../_components/client-components/EditBlock"
+import { Editor } from "@/components/ui/content-editor/editor"
 import { useCreatePost } from "../_data/post-client"
 import { PostType, usePostStore } from "../_types/PostType"
 
@@ -34,8 +35,13 @@ export default function Page() {
               Save
             </Button>
           </div>
-          <div className="justify-center space-y-8">
-            <EditBlock />
+          <div className="min-h-[30vh] justify-center space-y-8 border">
+            <Editor
+              onChange={debounce((data: string) => {
+                // get the data from the editor and set it to the local store
+                setPost({ ...getPost, content: data })
+              }, 1000)}
+            />
           </div>
         </div>
       </section>
