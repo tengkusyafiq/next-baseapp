@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { Meta, StoryObj } from "@storybook/react"
 import { Button } from "./Button"
 

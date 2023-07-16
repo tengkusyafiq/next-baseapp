@@ -1,3 +1,5 @@
+import { linkList } from "@/app/(modules)/materials/[id]/page"
+import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
 import { Button } from "@/components/ui/button/Button"
 import {
   Dialog,
@@ -9,8 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog/Dialog"
-import { linkList } from "../[id]/page"
-import { MaterialType } from "../_types/MaterialType"
 
 export default function MaterialDialog({ material }: { material: MaterialType }) {
   return (

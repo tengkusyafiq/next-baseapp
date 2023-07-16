@@ -1,7 +1,7 @@
 "use client"
+import { useUpdatePost } from "@/app/(modules)/posts/_data/post-client"
+import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { Button } from "@/components/ui/button/Button"
-import { useUpdatePost } from "../../_data/post-client"
-import { PostType } from "../../_types/PostType"
 
 export default function UpdatePostButton({ post }: { post: PostType }) {
   // get the edited post from local store

@@ -1,8 +1,8 @@
 "use client"
 import Link from "next/link"
+import { useDeletePost } from "@/app/(modules)/posts/_data/post-client"
+import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { Button } from "@/components/ui/button/Button"
-import { useDeletePost } from "../../_data/post-client"
-import { PostType } from "../../_types/PostType"
 
 export default function DeletePostButton({ post, href }: { post: PostType; href?: string }) {
   return (

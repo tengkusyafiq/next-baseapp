@@ -1,14 +1,16 @@
 "use client"
 import axios from "axios"
 import useSWR from "swr"
+import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { useToast } from "@/components/ui/toast/use-toast"
-import { PostType } from "../_types/PostType"
 
 // create an axios instance with base url and bearer token from env
 export const endpoint = process.env.NEXT_PUBLIC_BASE_API_URL + "/posts"
 export const headers = {
   Authorization: `Bearer ${process.env.NEXT_PUBLIC_BASE_API_KEY}`,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   "Content-Type": "application/json",
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   "Cache-Control": "no-cache",
 }
 

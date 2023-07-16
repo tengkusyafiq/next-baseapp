@@ -26,8 +26,8 @@ import {
   Undo,
 } from "lucide-react"
 
-import { ScrollArea } from "@/components/ui/scroll-area/scroll-area"
 import { EditorButton, EditorToggle } from "./editor-button"
+import { ScrollArea } from "@/components/ui/scroll-area/scroll-area"
 
 export function EditorToolbar({ editor }: { editor: Editor }) {
   return (

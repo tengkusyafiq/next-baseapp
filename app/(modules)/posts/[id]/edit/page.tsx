@@ -1,5 +1,5 @@
+import { PostEdit } from "@/app/(modules)/posts/_components/client-components/PostEdit"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { PostEdit } from "../../_components/client-components/PostEdit"
 
 interface Props {
   params: {
@@ -26,7 +26,7 @@ export default function Page({ params }: Props) {
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8">
-            <PostEdit postId={params.id}></PostEdit>
+            <PostEdit postId={params.id} />
           </div>
         </div>
       </section>

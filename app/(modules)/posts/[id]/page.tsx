@@ -1,6 +1,6 @@
 import { Metadata } from "next"
+import { PostView } from "@/app/(modules)/posts/_components/client-components/PostView"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { PostView } from "../_components/client-components/PostView"
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -31,7 +31,7 @@ export default async function Page({ params }: Props) {
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8">
-          <PostView postId={params.id}></PostView>
+          <PostView postId={params.id} />
           </div>
         </div>
       </section>

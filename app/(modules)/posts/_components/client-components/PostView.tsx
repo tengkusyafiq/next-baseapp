@@ -1,9 +1,9 @@
 "use client"
 import Link from "next/link"
+import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
+import { useGetPost } from "@/app/(modules)/posts/_data/post-client"
 import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
-import DeletePostButton from "./DeletePostButton"
-import { useGetPost } from "../../_data/post-client"
 
 export function PostView({ postId }: { postId: number }) {
   const { post, error, isLoading, isValidating } = useGetPost(postId)

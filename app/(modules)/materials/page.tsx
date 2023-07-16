@@ -84,16 +84,16 @@ export default async function BaseAppMaterials() {
 }
 
 export function BaseAppMaterialComponent(material: MaterialType) {
-  const navigate_to: string = "/materials/" + material.id
+  const navigateTo: string = "/materials/" + material.id
   return (
     <div key={material.id}>
       <div key={material.title} className="flex flex-col items-center justify-center text-center">
-        <Link prefetch={false} key={material.id} href={navigate_to}>
+        <Link prefetch={false} key={material.id} href={navigateTo}>
           <div className="mb-4 flex h-10 w-10 items-center justify-center lg:h-12 lg:w-12">
             <Image src={material.icon} alt={material.title} width={"100"} height={"100"} />
           </div>
         </Link>
-        <Link prefetch={false} key={material.id} href={navigate_to}>
+        <Link prefetch={false} key={material.id} href={navigateTo}>
           <h3 className="mb-2 text-xl font-bold dark:text-white">{material.title}</h3>
           <div className="mb-2 text-gray-500 dark:text-gray-400">{material.description}</div>
         </Link>

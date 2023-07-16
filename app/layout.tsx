@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-control/theme-provider"
 import { Toaster } from "@/components/ui/toast/toaster"
 
 // These styles apply to every route in the application
-import "../styles/globals.css"
+import "@/styles/globals.css"
 
 export const metadata: Metadata = {
   // for SEO

@@ -1,11 +1,11 @@
 "use client"
 
 import { debounce } from "lodash"
+import { useCreatePost } from "@/app/(modules)/posts/_data/post-client"
+import { PostType, usePostStore } from "@/app/(modules)/posts/_types/PostType"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
-import { useCreatePost } from "../_data/post-client"
-import { PostType, usePostStore } from "../_types/PostType"
 
 export default function Page() {
   // from local store

@@ -1,10 +1,10 @@
 "use client"
 import { debounce } from "lodash"
+import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
+import UpdatePostButton from "@/app/(modules)/posts/_components/client-components/UpdatePostButton"
+import { useGetPost } from "@/app/(modules)/posts/_data/post-client"
 import { usePostStore } from "@/app/(modules)/posts/_types/PostType"
 import { Editor } from "@/components/ui/content-editor/editor"
-import DeletePostButton from "./DeletePostButton"
-import UpdatePostButton from "./UpdatePostButton"
-import { useGetPost } from "../../_data/post-client"
 
 export function PostEdit({ postId }: { postId: number }) {
   const { post, error, isLoading, isValidating } = useGetPost(postId)

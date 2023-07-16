@@ -1,11 +1,11 @@
 "use client"
 
 import Link from "next/link"
+import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
+import { useGetAllPosts } from "@/app/(modules)/posts/_data/post-client"
+import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
-import DeletePostButton from "./DeletePostButton"
-import { useGetAllPosts } from "../../_data/post-client"
-import { PostType } from "../../_types/PostType"
 
 export default function PostList() {
   const { posts, error, isLoading, isValidating } = useGetAllPosts()
@@ -52,27 +52,3 @@ export default function PostList() {
     </div>
   )
 }
-
-// <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-//   {/* if the data is validating in the background, show indicator */}
-//   {isValidating && <div>Updating...</div>}
-//   {/* render each posts */}
-//   {(posts ?? []).map((post: PostType) => (
-//     <div key={post.id} className="justify-center">
-//       <div className="max-h-[30vh] justify-center space-y-8">
-//         <Editor initContent={post.content} viewMode={true} />
-//       </div>
-//       <div className="flex justify-end pt-2">
-//         <Link prefetch={false} href={`/posts/${post.id}`}>
-//           <Button>View</Button>
-//         </Link>
-//         <Link prefetch={false} href={`/posts/${post.id}/edit`}>
-//           <Button variant={"outline"} className="ml-2">
-//             Edit
-//           </Button>
-//         </Link>
-//         <DeletePostButton post={post} />
-//       </div>
-//     </div>
-//   ))}
-// </div>
