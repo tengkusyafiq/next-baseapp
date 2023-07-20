@@ -5,7 +5,7 @@ import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { useToast } from "@/components/ui/toast/use-toast"
 
 // create an axios instance with base url and bearer token from env
-export const endpoint = process.env.NEXT_PUBLIC_BASE_API_URL + "/posts"
+export const mainEndpoint = process.env.NEXT_PUBLIC_BASE_API_URL + "/posts"
 export const headers = {
   Authorization: `Bearer ${process.env.NEXT_PUBLIC_BASE_API_KEY}`,
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -15,12 +15,12 @@ export const headers = {
 }
 
 const api = axios.create({
-  baseURL: endpoint,
+  baseURL: mainEndpoint,
   headers: headers,
 })
 
-export const fetcher = async () => {
-  const response = await api.get(endpoint)
+export const mainFetcher = async () => {
+  const response = await api.get(mainEndpoint)
   // cast response to PostType[] if not null or empty
   if (response.data) {
     return response.data
@@ -36,22 +36,32 @@ export const useGetAllPosts = ({ search, page, limit }: { search?: string; page?
   if (page) params.append("page", page.toString())
   if (limit) params.append("limit", limit.toString())
 
-  const {
-    data: posts,
-    error,
-    isLoading,
-    isValidating,
-    mutate,
-  } = useSWR<PostType[]>(`${endpoint}?${params}`, fetcher, {})
+  // prepare endpoint
+  const endpoint = mainEndpoint
+
+  // prepare fetcher
+  const fetcher = async (params: string) => {
+    const response = await api.get(endpoint, { params: params.toString() })
+    // cast response to PostType[] if not null or empty
+    if (response.data) {
+      return response.data
+    }
+    return []
+  }
+
+  // server state management
+  const { data: posts, error, isLoading, isValidating, mutate } = useSWR<PostType[]>(endpoint, fetcher, {})
   return { posts, error, isLoading, isValidating, mutate }
 }
 
 /** to get a post */
 export const useGetPost = (id: number) => {
-  // custom fetcher to get a single post
-  const singleEndpoint = endpoint + "/" + id
+  // prepare endpoint
+  const endpoint = mainEndpoint + "/" + id
+
+  // prepare fetcher
   const fetcher = async () => {
-    const response = await api.get(singleEndpoint)
+    const response = await api.get(endpoint)
     // cast response to PostType if not null or empty
     if (response.data) {
       return response.data
@@ -59,16 +69,20 @@ export const useGetPost = (id: number) => {
     return null
   }
 
-  const { data: post, error, isLoading, isValidating, mutate } = useSWR<PostType>(singleEndpoint, fetcher, {})
+  // server state management
+  const { data: post, error, isLoading, isValidating, mutate } = useSWR<PostType>(endpoint, fetcher, {})
+
   return { post, error, isLoading, isValidating, mutate }
 }
 
 /** to create a post */
 export const useCreatePost = (newPost: PostType) => {
+  // prepare server state management
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { mutate } = useSWR(mainEndpoint, mainFetcher, {})
   const { posts } = useGetAllPosts()
 
+  // do job: create
   const job = async () => {
     try {
       // trigger error if body is empty
@@ -112,7 +126,6 @@ export const useCreatePost = (newPost: PostType) => {
         description = error.message ?? "Something went wrong."
       }
       // get error message if it exists, otherwise show generic message
-      // only show for 1 second
       toast({ duration: 1000, title: "Error creating post 😢", description: description })
       console.error("error creating post", error)
     }
@@ -124,14 +137,14 @@ export const useCreatePost = (newPost: PostType) => {
 /** to update a post */
 export const useUpdatePost = (updatedPost: PostType) => {
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { mutate } = useSWR(mainEndpoint, mainFetcher, {})
   const { posts } = useGetAllPosts()
 
   const job = async () => {
     try {
       // sync with server and update cache
       await api
-        .put(`${endpoint}/${updatedPost.id}`, updatedPost)
+        .put(`${mainEndpoint}/${updatedPost.id}`, updatedPost)
         // if success, get the new post
         .then((res) => {
           updatedPost = res.data as PostType
@@ -174,14 +187,14 @@ export const useUpdatePost = (updatedPost: PostType) => {
 /** to delete a post */
 export const useDeletePost = (id: number) => {
   const { toast } = useToast()
-  const { mutate } = useSWR(endpoint, fetcher, {})
+  const { mutate } = useSWR(mainEndpoint, mainFetcher, {})
   const { posts } = useGetAllPosts()
 
   const job = async () => {
     try {
       // sync with server and update cache
       await api
-        .delete(`${endpoint}/${id}`)
+        .delete(`${mainEndpoint}/${id}`)
         // if success, get the new post
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .then((res) => null)

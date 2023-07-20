@@ -1,24 +1,28 @@
-/* eslint-disable */
 const fs = require("fs")
 
 module.exports = {
+  root: true,
   extends: [
+    // "check-file", // TODO: need to fix: Failed to load config "check-file" to extend from.
     "plugin:storybook/recommended",
     "plugin:tailwindcss/recommended",
-    // "check-file", // TODO: need to fix: Failed to load config "check-file" to extend from.
     "prettier",
     "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/recommended",
     "react-app",
     "react-app/jest",
   ],
+  plugins: ["@typescript-eslint"],
   parserOptions: {
+    parser: "@typescript-eslint/parser",
+    project: "./tsconfig.json",
     babelOptions: {
       presets: [require.resolve("next/babel")],
     },
-    project: "./tsconfig.json",
   },
   rules: {
+    // allow type any
+    "@typescript-eslint/no-explicit-any": "off",
     // if the html tag is empty, it should be self-closing
     "react/self-closing-comp": [
       "error",
@@ -125,9 +129,9 @@ module.exports = {
         format: ["camelCase", "UPPER_CASE"],
       },
       {
-        selector: ['variable', 'function', 'objectLiteralProperty', 'objectLiteralMethod'],
-        types: ['function'],
-        format: ['PascalCase', 'camelCase'],
+        selector: ["variable", "function", "objectLiteralProperty", "objectLiteralMethod"],
+        types: ["function"],
+        format: ["PascalCase", "camelCase"],
       },
     ],
     // // follow file naming conventions: file names should be in kebab-case
@@ -196,6 +200,10 @@ module.exports = {
       },
     ],
   },
+  ignorePatterns: [
+    // ignore .eslintrc.js file
+    ".eslintrc.js",
+  ],
 }
 
 function getDirectoriesToSort() {

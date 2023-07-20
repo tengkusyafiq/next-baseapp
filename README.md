@@ -5,19 +5,19 @@
 This is an opinionated baseapp for product-ready project to be used as a starting point for your project. To start, run the following commands in your terminal:
 
 ```bash
-yarn install --frozen-lockfile
+pnpm install
 ```
 
 To start the development server with storybook, run the following command in your terminal. This is helpful for developing components in isolation.
 
 ```bash
-yarn dev-storybook
+pnpm dev-storybook
 ```
 
 To start the development server, run the following command in your terminal.
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. If you are new to Next.js, you can go through the home page to learn more about the baseapp.
@@ -36,10 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] Add example: stories
 - [ ] Add example: types
 - [ ] Add example: styles
-- [ ] Add example: translations
-- [ ] Add example: i18n
-- [ ] Add example: l10n
-- [ ] Add example: analytics
+- [ ] Add example: translations/internationalization
 - [ ] Add example: SEO
 - [ ] Add example: PWA
 - [ ] Add example: CI/CD
