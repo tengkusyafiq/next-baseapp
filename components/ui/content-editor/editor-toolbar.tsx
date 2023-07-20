@@ -31,7 +31,8 @@ import { ScrollArea } from "@/components/ui/scroll-area/scroll-area"
 
 export function EditorToolbar({ editor }: { editor: Editor }) {
   return (
-    <ScrollArea orientation="horizontal" className="!sticky top-0 z-10 rounded-t-md border-b bg-neutral-800">
+    <ScrollArea orientation="horizontal" className="!sticky top-0 z-10 rounded-t-md border-b ">
+      {/* set toolbar color */}
       <Toolbar aria-label="Formatting options" className="flex items-center gap-2 px-2 py-1.5 [&>*]:shrink-0">
         <div>
           <EditorButton title="Undo" icon={<Undo />} onPress={() => editor.chain().focus().undo().run()} />

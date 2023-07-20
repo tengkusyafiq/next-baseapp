@@ -98,6 +98,6 @@
   @apply min-h-0 text-foreground;
 }
 /* also apply for all headers, bold, strong, italic, etc. in prosemirror */
-.ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4, .ProseMirror h5, .ProseMirror h6, .ProseMirror strong, .ProseMirror b {
+.ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4, .ProseMirror h5, .ProseMirror h6, .ProseMirror strong, .ProseMirror b, .ProseMirror p {
   @apply text-foreground;
 }
