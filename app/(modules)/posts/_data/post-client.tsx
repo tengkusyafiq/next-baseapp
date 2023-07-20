@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios"
+import qs from "qs"
 import useSWR from "swr"
 import { PostType } from "@/app/(modules)/posts/_types/PostType"
 import { useToast } from "@/components/ui/toast/use-toast"
@@ -17,6 +18,9 @@ export const headers = {
 const api = axios.create({
   baseURL: mainEndpoint,
   headers: headers,
+  paramsSerializer: {
+    serialize: (params) => qs.stringify(params, { arrayFormat: "brackets" }),
+  },
 })
 
 export const mainFetcher = async () => {
@@ -40,8 +44,8 @@ export const useGetAllPosts = ({ search, page, limit }: { search?: string; page?
   const endpoint = mainEndpoint
 
   // prepare fetcher
-  const fetcher = async (params: string) => {
-    const response = await api.get(endpoint, { params: params.toString() })
+  const fetcher = async (params: URLSearchParams) => {
+    const response = await api.get(endpoint, { params })
     // cast response to PostType[] if not null or empty
     if (response.data) {
       return response.data

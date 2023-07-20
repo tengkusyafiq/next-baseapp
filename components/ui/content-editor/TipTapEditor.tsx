@@ -27,7 +27,7 @@ const TipTapEditor = ({
       },
     },
     onCreate: ({ editor }) => {
-      editor.commands.setContent(initialData || "ho")
+      editor.commands.setContent(initialData || "")
     },
   })
 

@@ -83,7 +83,7 @@
     --ring: var(--light-black-2);
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -93,5 +93,11 @@
   }
 }
 
-/* override editorjs css */
-.ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; }
+/* override tiptap css */
+.ProseMirror {
+  @apply min-h-0 text-foreground;
+}
+/* also apply for all headers, bold, strong, italic, etc. in prosemirror */
+.ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4, .ProseMirror h5, .ProseMirror h6, .ProseMirror strong, .ProseMirror b {
+  @apply text-foreground;
+}

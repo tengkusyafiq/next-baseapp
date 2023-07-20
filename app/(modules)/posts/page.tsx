@@ -18,7 +18,7 @@ export default async function Page() {
         </div>
         <div className="mx-auto grid max-w-screen-xl px-4 text-center">
           <div className="mx-auto place-self-center">
-            <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
+            <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               Knowledgebase 📖
             </h1>
             <Link prefetch={false} href="/posts/create">
@@ -29,7 +29,7 @@ export default async function Page() {
         </div>
       </section>
       <section className="">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
+        <div className="px-4 py-8 sm:py-16 lg:px-6">
           <PostList />
         </div>
       </section>

@@ -25,14 +25,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Road map
 
 - [ ] How to structure the files and folders
-- [ ] Standard naming convention
+- [ ] Standard naming convention for files and folders
 - [ ] When to use server side rendering VS client side rendering
 - [ ] Standard server state management
 - [ ] Standard client state management
 - [ ] Design system
 - [ ] Standard UI components
+- [ ] Add example: Layout [docs](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
+- [ ] Add example: Page section ([docs](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes))
 - [ ] Add example: tests
-- [ ] Add example: examples
+- [ ] Add example: 1 full feature: Article
 - [ ] Add example: stories
 - [ ] Add example: types
 - [ ] Add example: styles
