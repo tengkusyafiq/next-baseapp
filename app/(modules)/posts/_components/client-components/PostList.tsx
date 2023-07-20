@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
 import { useGetAllPosts } from "@/app/(modules)/posts/_data/post-client"
 import { postClip } from "@/app/(modules)/posts/_data/utils"
@@ -9,7 +10,12 @@ import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function PostList() {
-  const { posts, error, isLoading, isValidating } = useGetAllPosts({ search: "", page: 1, limit: 10 })
+  // get search params from url
+  const searchParams = useSearchParams()
+  const search = searchParams.get("search") || ""
+  const page = Number(searchParams.get("page") || 1)
+  const limit = Number(searchParams.get("limit") || 10)
+  const { posts, error, isLoading, isValidating } = useGetAllPosts({ search: search, page: page, limit: limit })
 
   // if loading
   if (isLoading) {
