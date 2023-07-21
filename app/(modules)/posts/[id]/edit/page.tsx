@@ -1,4 +1,4 @@
-import { PostEdit } from "@/app/(modules)/posts/_components/client-components/PostEdit"
+import { PostEdit } from "@/app/(modules)/posts/_components/client-components/post-editor"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 
 interface Props {

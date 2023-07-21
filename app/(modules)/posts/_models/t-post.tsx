@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-export type PostType = {
+export type TPost = {
   id: number
   content: string
 }
@@ -10,9 +10,9 @@ export const usePostStore = create(
   persist(
     (set) => ({
       // storage: to store current post
-      post: null as PostType | null,
+      post: null as TPost | null,
       // action: to set current post
-      setPost: (updatedPost: PostType) => {
+      setPost: (updatedPost: TPost) => {
         set(() => ({
           post: updatedPost,
         }))

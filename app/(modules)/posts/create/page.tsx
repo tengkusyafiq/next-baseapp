@@ -1,10 +1,10 @@
 "use client"
 
 import { debounce } from "lodash"
-import { useCreatePost } from "@/app/(modules)/posts/_data/post-client"
-import { PostType, usePostStore } from "@/app/(modules)/posts/_types/PostType"
+import { useCreatePost } from "@/app/(modules)/posts/_data/post-data"
+import { TPost, usePostStore } from "@/app/(modules)/posts/_models/t-post"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { Button } from "@/components/ui/button/Button"
+import { Button } from "@/components/ui/button/button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function Page() {
@@ -31,7 +31,7 @@ export default function Page() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           {/* put button on the right */}
           <div className="flex justify-end pb-4">
-            <Button size={"sm"} variant={"secondary"} onClick={useCreatePost(getPost as PostType)}>
+            <Button size={"sm"} variant={"secondary"} onClick={useCreatePost(getPost as TPost)}>
               Save
             </Button>
           </div>

@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { PostView } from "@/app/(modules)/posts/_components/client-components/PostView"
+import { PostView } from "@/app/(modules)/posts/_components/client-components/post-viewer"
 import { ThemeButton } from "@/components/theme-control/theme-button"
 
 export const metadata: Metadata = {

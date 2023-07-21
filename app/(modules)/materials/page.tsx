@@ -1,10 +1,10 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import MaterialDialog from "@/app/(modules)/materials/_components/MaterialDialog"
-import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
+import MaterialDialog from "@/app/(modules)/materials/_components/material-dialog"
+import { TMaterial } from "@/app/(modules)/materials/_models/t-material"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { Button } from "@/components/ui/button/Button"
+import { Button } from "@/components/ui/button/button"
 import { materials as mock_data } from "@/public/mock-data/materials"
 
 export const metadata: Metadata = {
@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 }
 
 export async function getBaseAppMaterials() {
-  const materials = mock_data as MaterialType[]
+  const materials = mock_data as TMaterial[]
 
   // calculate the total eta
-  materials.forEach((material: MaterialType) => {
+  materials.forEach((material: TMaterial) => {
     material.total_eta = material.string_and_links.reduce(
       (total: number, current: { eta: number }) => total + current.eta,
       0
@@ -75,7 +75,7 @@ export default async function BaseAppMaterials() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
             {/* render each materials */}
-            {materials.map((material: MaterialType) => BaseAppMaterialComponent(material))}
+            {materials.map((material: TMaterial) => BaseAppMaterialComponent(material))}
           </div>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default async function BaseAppMaterials() {
   )
 }
 
-export function BaseAppMaterialComponent(material: MaterialType) {
+export function BaseAppMaterialComponent(material: TMaterial) {
   const navigateTo: string = "/materials/" + material.id
   return (
     <div key={material.id}>

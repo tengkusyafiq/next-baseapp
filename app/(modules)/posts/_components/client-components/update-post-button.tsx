@@ -1,9 +1,9 @@
 "use client"
-import { useUpdatePost } from "@/app/(modules)/posts/_data/post-client"
-import { PostType } from "@/app/(modules)/posts/_types/PostType"
-import { Button } from "@/components/ui/button/Button"
+import { useUpdatePost } from "@/app/(modules)/posts/_data/post-data"
+import { TPost } from "@/app/(modules)/posts/_models/t-post"
+import { Button } from "@/components/ui/button/button"
 
-export default function UpdatePostButton({ post }: { post: PostType }) {
+export default function UpdatePostButton({ post }: { post: TPost }) {
   // get the edited post from local store
   // from local store
   // const getPost = usePostStore((state: any) => state.post)

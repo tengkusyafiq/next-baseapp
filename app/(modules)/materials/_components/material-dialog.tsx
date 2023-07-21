@@ -1,6 +1,6 @@
 import { linkList } from "@/app/(modules)/materials/[id]/page"
-import { MaterialType } from "@/app/(modules)/materials/_types/MaterialType"
-import { Button } from "@/components/ui/button/Button"
+import { TMaterial } from "@/app/(modules)/materials/_models/t-material"
+import { Button } from "@/components/ui/button/button"
 import {
   Dialog,
   DialogClose,
@@ -10,9 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog/Dialog"
+} from "@/components/ui/dialog/dialog"
 
-export default function MaterialDialog({ material }: { material: MaterialType }) {
+export default function MaterialDialog({ material }: { material: TMaterial }) {
   return (
     <Dialog>
       <DialogTrigger asChild>

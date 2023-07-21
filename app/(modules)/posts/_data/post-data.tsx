@@ -2,7 +2,7 @@
 import axios from "axios"
 import qs from "qs"
 import useSWR from "swr"
-import { PostType } from "@/app/(modules)/posts/_types/PostType"
+import { TPost } from "@/app/(modules)/posts/_models/t-post"
 import { useToast } from "@/components/ui/toast/use-toast"
 
 // create an axios instance with base url and bearer token from env
@@ -32,7 +32,7 @@ export const mainFetcher = async () => {
   return []
 }
 
-/** to get all posts, with param search, pagination, limit*/
+/** to get all posts */
 export const useGetAllPosts = ({ search, page, limit }: { search?: string; page?: number; limit?: number } = {}) => {
   // prepare query params
   const params = new URLSearchParams()
@@ -54,7 +54,7 @@ export const useGetAllPosts = ({ search, page, limit }: { search?: string; page?
   }
 
   // server state management
-  const { data: posts, error, isLoading, isValidating, mutate } = useSWR<PostType[]>(endpoint, fetcher, {})
+  const { data: posts, error, isLoading, isValidating, mutate } = useSWR<TPost[]>(endpoint, fetcher, {})
   return { posts, error, isLoading, isValidating, mutate }
 }
 
@@ -74,13 +74,13 @@ export const useGetPost = (id: number) => {
   }
 
   // server state management
-  const { data: post, error, isLoading, isValidating, mutate } = useSWR<PostType>(endpoint, fetcher, {})
+  const { data: post, error, isLoading, isValidating, mutate } = useSWR<TPost>(endpoint, fetcher, {})
 
   return { post, error, isLoading, isValidating, mutate }
 }
 
 /** to create a post */
-export const useCreatePost = (newPost: PostType) => {
+export const useCreatePost = (newPost: TPost) => {
   // prepare server state management
   const { toast } = useToast()
   const { mutate } = useSWR(mainEndpoint, mainFetcher, {})
@@ -104,7 +104,7 @@ export const useCreatePost = (newPost: PostType) => {
         .post("", prepareBody)
         // if success, get the new post
         .then((res) => {
-          newPost = res.data as PostType
+          newPost = res.data as TPost
         })
         // if error, catch it
         .catch((error) => {
@@ -139,7 +139,7 @@ export const useCreatePost = (newPost: PostType) => {
 }
 
 /** to update a post */
-export const useUpdatePost = (updatedPost: PostType) => {
+export const useUpdatePost = (updatedPost: TPost) => {
   const { toast } = useToast()
   const { mutate } = useSWR(mainEndpoint, mainFetcher, {})
   const { posts } = useGetAllPosts()
@@ -151,7 +151,7 @@ export const useUpdatePost = (updatedPost: PostType) => {
         .put(`${mainEndpoint}/${updatedPost.id}`, updatedPost)
         // if success, get the new post
         .then((res) => {
-          updatedPost = res.data as PostType
+          updatedPost = res.data as TPost
         })
         // if error, catch it
         .catch((error) => {

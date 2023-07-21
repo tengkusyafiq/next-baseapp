@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { Meta, StoryObj } from "@storybook/react"
-import { Button } from "./Button"
+import { Button } from "./button"
 
 const meta: Meta<typeof Button> = {
   title: "UI/Button",

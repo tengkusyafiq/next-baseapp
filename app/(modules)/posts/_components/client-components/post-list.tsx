@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
-import { useGetAllPosts } from "@/app/(modules)/posts/_data/post-client"
-import { postClip } from "@/app/(modules)/posts/_data/utils"
-import { PostType } from "@/app/(modules)/posts/_types/PostType"
-import { Button } from "@/components/ui/button/Button"
+import DeletePostButton from "@/app/(modules)/posts/_components/client-components/delete-post-button"
+import { useGetAllPosts } from "@/app/(modules)/posts/_data/post-data"
+import { postClip } from "@/app/(modules)/posts/_data/post-service"
+import { TPost } from "@/app/(modules)/posts/_models/t-post"
+import { Button } from "@/components/ui/button/button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function PostList() {
@@ -34,7 +34,7 @@ export default function PostList() {
       {isValidating && <div className="items-center">Updating...</div>}
       {/* each card consume 1 row. screen can see 2 cards at a time */}
       <div className="flex flex-col items-center">
-        {(posts ?? []).map((post: PostType) => (
+        {(posts ?? []).map((post: TPost) => (
           // each card consume whole width
           <div key={post.id} className="max-w-full overflow-hidden rounded-lg shadow-lg">
             <div className="px-4 py-5 sm:p-6">

@@ -1,5 +1,5 @@
 /**
- * get post content html, and clip it to 1000 tags
+ * clip html content it to 1000 characters
  */
 export function postClip(htmlContent: string, limit = 1000) {
   const content = htmlContent

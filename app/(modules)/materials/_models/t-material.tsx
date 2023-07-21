@@ -1,6 +1,6 @@
 // material type
 
-export type MaterialType = {
+export type TMaterial = {
   id: number
   title: string
   description: string

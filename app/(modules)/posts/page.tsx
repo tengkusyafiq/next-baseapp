@@ -1,8 +1,8 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import PostList from "@/app/(modules)/posts/_components/client-components/PostList"
+import PostList from "@/app/(modules)/posts/_components/client-components/post-list"
 import { ThemeButton } from "@/components/theme-control/theme-button"
-import { Button } from "@/components/ui/button/Button"
+import { Button } from "@/components/ui/button/button"
 
 export const metadata: Metadata = {
   title: "Posts",

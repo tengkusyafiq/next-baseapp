@@ -1,9 +1,9 @@
 "use client"
 import { debounce } from "lodash"
-import DeletePostButton from "@/app/(modules)/posts/_components/client-components/DeletePostButton"
-import UpdatePostButton from "@/app/(modules)/posts/_components/client-components/UpdatePostButton"
-import { useGetPost } from "@/app/(modules)/posts/_data/post-client"
-import { usePostStore } from "@/app/(modules)/posts/_types/PostType"
+import DeletePostButton from "@/app/(modules)/posts/_components/client-components/delete-post-button"
+import UpdatePostButton from "@/app/(modules)/posts/_components/client-components/update-post-button"
+import { useGetPost } from "@/app/(modules)/posts/_data/post-data"
+import { usePostStore } from "@/app/(modules)/posts/_models/t-post"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export function PostEdit({ postId }: { postId: number }) {
