@@ -1,6 +1,6 @@
 import { linkList } from "@/app/[lang]/(modules)/materials/[id]/page"
 import { TMaterial } from "@/app/[lang]/(modules)/materials/_models/t-material"
-import { Button } from "@/components/ui/button/Button"
+import { Button } from "@/components/ui/button/button"
 import {
   Dialog,
   DialogClose,

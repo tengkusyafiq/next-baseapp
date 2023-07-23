@@ -3,7 +3,7 @@
 import { debounce } from "lodash"
 import { useCreateArticle } from "@/app/[lang]/(modules)/articles/_data/article-data"
 import { TArticle, useArticleStore } from "@/app/[lang]/(modules)/articles/_models/t-article"
-import { Button } from "@/components/ui/button/Button"
+import { Button } from "@/components/ui/button/button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function Page() {
