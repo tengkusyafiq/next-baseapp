@@ -22,7 +22,7 @@ const editorOptions: Partial<EditorOptions> = {
   editorProps: {
     attributes: {
       class:
-        "prose prose-invert max-w-none p-4 focus:outline-none prose-a:cursor-pointer min-h-[calc(100dvh-12.75rem)]",
+        "prose dark:prose-invert max-w-none p-4 focus:outline-none prose-a:cursor-pointer min-h-[calc(100dvh-12.75rem)]",
     },
   },
 }

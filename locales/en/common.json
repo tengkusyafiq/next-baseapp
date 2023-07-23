@@ -1,0 +1,6 @@
+{
+  "hello": "Hello",
+  "welcome": "Welcome",
+  "variable-example": "Using a variable {{count}}",
+  "knowledgebase": "Knowledgebase"
+}

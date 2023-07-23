@@ -27,6 +27,15 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mjs", ".next/types/**/*.ts", "next.config.cjs"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mjs",
+    ".next/types/**/*.ts",
+    "next.config.cjs",
+    "i18n.js",
+    "middleware.ts"
+  ],
   "exclude": ["node_modules"]
 }

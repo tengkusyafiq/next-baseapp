@@ -35,9 +35,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] Setting up a page layout [#](#setting-up-a-page-layout)
 - [ ] Setting up translation
 - [ ] Setting up environments
-- [ ] Setting up TDD
 - [ ] CRUD example walkthrough: Article
 - [ ] Setting up SEO
+- [ ] Setting up TDD
 - [ ] Setting up CI/CD on AWS
 - [ ] Setting up monitoring tools (Analytics and Crashlytics)
 - [ ] Add example: logging
@@ -142,7 +142,7 @@ Your project should be structured as follows:
 
 #### Feature level
 
-1. Each main features should be in its own folder in the `@/app/(modules)`. For example, the `articles` feature should be in the `articles` folder. Or the `leave-management` feature should be in the `leave-management` folder.
+1. Each main features should be in its own folder in the `@/app/[lang]/(modules)`. For example, the `articles` feature should be in the `articles` folder. Or the `leave-management` feature should be in the `leave-management` folder.
 2. For customized components on a per feature basis, they should be in the feature directory, which is `_components`. For example, the `articles` feature should have its own `@/app/articles/_components` folder.
 
 ### When to use server side rendering VS client side rendering
@@ -163,4 +163,3 @@ Your project should be structured as follows:
 1. Read more here [#](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
 
 ### Setting up environments
-

@@ -1,0 +1,6 @@
+{
+  "hello": "你好",
+  "welcome": "欢迎",
+  "variable-example": "使用变量 {{count}}",
+  "knowledgebase": "知识库"
+}

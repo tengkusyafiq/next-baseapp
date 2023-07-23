@@ -41,8 +41,10 @@
     "clsx",
     "lucide",
     "zustand",
-    "storysource"
+    "storysource",
+    "knowledgebase",
+    "iconduck",
+    "shadcn"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "cSpell.words": ["shadcn"]
 }
