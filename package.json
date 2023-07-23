@@ -6,6 +6,7 @@
     "dev": "sst bind cross-env FORCE_COLOR=1 next dev",
     "dev-storybook": "concurrently 'pnpm:watch:*' --kill-others-on-fail",
     "watch:dev": "sst bind cross-env FORCE_COLOR=1 next dev",
+    "prebuild": "node prebuild.js",
     "build": "next build",
     "start": "next start",
     "build:staging": "env-cmd -f .env.staging pnpm build",
