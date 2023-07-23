@@ -1,7 +1,7 @@
 "use client"
 import { useUpdateArticle } from "@/app/[lang]/(modules)/articles/_data/article-data"
 import { TArticle } from "@/app/[lang]/(modules)/articles/_models/t-article"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button/Button"
 
 export default function UpdateArticleButton({ article }: { article: TArticle }) {
   // get the edited article from local store

@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import useTranslation from "next-translate/useTranslation"
 import ArticleList from "@/app/[lang]/(modules)/articles/_components/client-components/article-list"
 import Link from "@/components/link-control/link"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button/Button"
 
 export const metadata: Metadata = {
   title: "Articles",

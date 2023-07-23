@@ -2,7 +2,7 @@
 import DeleteArticleButton from "@/app/[lang]/(modules)/articles/_components/client-components/delete-article-button"
 import { useGetArticle } from "@/app/[lang]/(modules)/articles/_data/article-data"
 import Link from "@/components/link-control/link"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export function ArticleView({ articleId }: { articleId: number }) {

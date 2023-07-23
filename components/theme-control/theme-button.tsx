@@ -4,7 +4,7 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useTheme } from "next-themes"
 import * as React from "react"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button/Button"
 
 export function ThemeButton({ className }: { className?: string }) {
   const { setTheme } = useTheme()

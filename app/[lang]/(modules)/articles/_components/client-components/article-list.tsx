@@ -6,7 +6,7 @@ import { useGetAllArticles } from "@/app/[lang]/(modules)/articles/_data/article
 import { clipArticle } from "@/app/[lang]/(modules)/articles/_data/article-service"
 import { TArticle } from "@/app/[lang]/(modules)/articles/_models/t-article"
 import Link from "@/components/link-control/link"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button/Button"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function ArticleList() {
