@@ -27,7 +27,7 @@ export function ArticleView({ articleId }: { articleId: number }) {
                 Edit
               </Button>
             </Link>
-            <DeleteArticleButton article={article} href="/articles" />
+            <DeleteArticleButton articleId={article.id} href="/articles" />
           </div>
           <div className="justify-center space-y-8">{<Editor initContent={article.content} viewMode={true} />}</div>
         </div>

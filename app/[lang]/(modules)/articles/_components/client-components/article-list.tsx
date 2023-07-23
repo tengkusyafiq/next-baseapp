@@ -50,7 +50,7 @@ export default function ArticleList() {
                     Edit
                   </Button>
                 </Link>
-                <DeleteArticleButton article={article} />
+                <DeleteArticleButton articleId={article.id} />
               </div>
             </div>
           </div>

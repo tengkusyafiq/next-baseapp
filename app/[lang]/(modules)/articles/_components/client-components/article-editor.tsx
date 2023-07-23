@@ -3,13 +3,13 @@ import { debounce } from "lodash"
 import DeleteArticleButton from "@/app/[lang]/(modules)/articles/_components/client-components/delete-article-button"
 import UpdateArticleButton from "@/app/[lang]/(modules)/articles/_components/client-components/update-article-button"
 import { useGetArticle } from "@/app/[lang]/(modules)/articles/_data/article-data"
-import { useArticleStore } from "@/app/[lang]/(modules)/articles/_models/t-article"
+import { TArticle, useArticleStore } from "@/app/[lang]/(modules)/articles/_models/t-article"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export function ArticleEdit({ articleId }: { articleId: number }) {
   const { article, error, isLoading, isValidating } = useGetArticle(articleId)
   // from local store
-  const getArticle = useArticleStore((state: any) => state.article)
+  const getArticle = useArticleStore((state: any) => state.article) as TArticle
   const setArticle = useArticleStore((state: any) => state.setArticle)
 
   if (isLoading) {
@@ -18,6 +18,7 @@ export function ArticleEdit({ articleId }: { articleId: number }) {
   if (error) {
     return <div>Error: {error.message}</div>
   }
+
   return (
     <>
       {/* if the data is validating in the background, show indicator */}
@@ -27,7 +28,7 @@ export function ArticleEdit({ articleId }: { articleId: number }) {
           {/* put buttons on the right */}
           <div className="mb-4 flex justify-end">
             <UpdateArticleButton article={getArticle} />
-            <DeleteArticleButton article={getArticle} href="/articles" />
+            <DeleteArticleButton articleId={article.id} href="/articles" />
           </div>
           <div className="min-h-[30vh] justify-center space-y-8 border">
             <Editor

@@ -37,5 +37,8 @@ export async function middleware(request: NextRequest) {
   /** Adds ?lang={locale} for next-translate package */
   request.nextUrl.searchParams.set("lang", locale)
 
+  // debugging
+  console.log("debugging", request.nextUrl.href)
+
   return NextResponse.rewrite(request.nextUrl)
 }

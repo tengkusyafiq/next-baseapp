@@ -8,7 +8,7 @@ import { Editor } from "@/components/ui/content-editor/editor"
 
 export default function Page() {
   // from local store
-  const getArticle = useArticleStore((state: any) => state.article)
+  const getArticle = useArticleStore((state: any) => state.article) as TArticle
   const setArticle = useArticleStore((state: any) => state.setArticle)
 
   return (
@@ -26,7 +26,7 @@ export default function Page() {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
           {/* put button on the right */}
           <div className="flex justify-end pb-4">
-            <Button size={"sm"} variant={"secondary"} onClick={useCreateArticle(getArticle as TArticle)}>
+            <Button size={"sm"} variant={"secondary"} onClick={useCreateArticle(getArticle)}>
               Save
             </Button>
           </div>
