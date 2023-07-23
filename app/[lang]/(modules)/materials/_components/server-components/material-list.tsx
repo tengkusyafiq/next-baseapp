@@ -3,8 +3,8 @@ import MaterialDialog from "@/app/[lang]/(modules)/materials/_components/server-
 import { TMaterial } from "@/app/[lang]/(modules)/materials/_models/t-material"
 import Link from "@/components/link-control/link"
 
-export default function MaterialList({ materials }: { materials: TMaterial[] }) {
-  return <div className="">{materials.map((material: TMaterial) => MaterialCard(material))}</div>
+export default function MaterialList({ materials, className }: { materials: TMaterial[]; className: string }) {
+  return <div className={className}>{materials.map((material: TMaterial) => MaterialCard(material))}</div>
 }
 
 export function MaterialCard(material: TMaterial) {

@@ -14,25 +14,29 @@ import {
 
 export function TopBar() {
   return (
-    <NavigationMenu className="flex">
-      <NavigationMenuList className="flex-none">
-        <NavigationMenuItem>
-          <Link href="/documentation" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/articles" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Example</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/materials" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Stacks</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <LanguageControl className="flex-auto justify-end" />
-        <ThemeButton className="flex-auto justify-end" />
+    <NavigationMenu>
+      <NavigationMenuList className="flex">
+        <div className="left-0 flex">
+          <NavigationMenuItem>
+            <Link href="/documentation" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/articles" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Example</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/materials" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Stacks</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </div>
+        <div className="right-0 flex justify-end">
+          <LanguageControl />
+          <ThemeButton />
+        </div>
       </NavigationMenuList>
     </NavigationMenu>
   )

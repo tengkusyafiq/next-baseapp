@@ -24,12 +24,8 @@ export default async function Page() {
         </div>
       </section>
       <section className="">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <div className="justify-center md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-            {/* render each materials */}
-            <MaterialList materials={materials} />
-          </div>
-        </div>
+        {/* render each materials */}
+        <MaterialList materials={materials} className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3" />
       </section>
     </>
   )
