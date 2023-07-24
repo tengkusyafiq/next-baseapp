@@ -95,7 +95,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Your project should be structured as follows:
 
 ```bash
-├── app
+├── app\[lang]
 │   ├── (modules)
 │   │   ├── leave-management (example)
 │   │   │   ├── _types
@@ -132,7 +132,7 @@ Your project should be structured as follows:
 
 #### Root level
 
-1. The main app directory is in the `@/app` folder.
+1. The main app directory is in the `@/app/[lang]/` folder.
 2. For shared components, they should be in the `@/components` folder.
 3. Each shared component file should have their own folder. For example, the `Button` component should be in the `@/components/button` folder.
 4. Each shared component should have their own storybook file. For example, the `button` component should have a `button.stories.tsx` file. This way, all developers can explore the component in isolation.
@@ -152,14 +152,24 @@ Your project should be structured as follows:
 
 ### Standard server state management with SWR
 
+Development done. Pending documentation
+
 ### Standard client state management with zustand
+
+Development done. Pending documentation
 
 ### Design system with Storybook
 
+Development done. Pending documentation
+
 ### Standard UI components with shadcn UI
+
+Development done. Pending documentation
 
 ### Setting up a page layout
 
 1. Read more here [#](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
 
 ### Setting up environments
+
+Development done. Pending documentation
