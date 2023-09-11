@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
 
   // set default language
-  if (!lang) lang = "en"
+  if (!lang) lang = "default"
   return (
     <html lang={lang}>
       <body className="p-4">
