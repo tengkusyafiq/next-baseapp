@@ -1,41 +1,108 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { type NextRequest, NextResponse } from "next/server"
 
-/** Regex to check if current path equals to a public file */
-const PUBLIC_FILE = /\.(.*)$/
+type Language = "en" | "ms" | "zh"
 
-/** Ignore non-page paths */
-const shouldProceed = (pathname: string) => {
-  if (pathname.startsWith("/_next") || pathname.includes("/api/") || PUBLIC_FILE.test(pathname)) {
-    return false
-  }
-  return true
+const languages = ["en", "ms", "zh"] as const
+const fallbackLanguage = "en"
+
+function getHostname(request: NextRequest) {
+  const { protocol, host } = request.nextUrl
+  return `${protocol}//${host}`
 }
 
-export async function middleware(request: NextRequest) {
-  const { locale, pathname } = request.nextUrl
+function getLocale(request: NextRequest) {
+  function getAcceptedLocale(): Language | undefined {
+    const headerValue = request.headers.get("accept-language")
+    if (!headerValue) return undefined
 
-  /** Ignore non-page paths */
-  if (!shouldProceed(pathname)) return
+    const options = headerValue.split(",")
+    for (const option of options) {
+      const [locale] = option.trim().split(";")[0].split("-")
+      if (!locale || locale.length !== 2) return undefined
+      const extracted = locale.toLowerCase() as Language
+      if (languages.includes(extracted)) return extracted
+    }
 
-  if (request.nextUrl.locale === "default") {
-    /** Get user's locale */
-    const storedLocale = request.cookies.get("NEXT_LOCALE")?.value
-
-    const response = NextResponse.redirect(new URL(`/${storedLocale || "en"}/${request.nextUrl.pathname}`, request.url))
-
-    /** Store default locale in user's cookies */
-    if (!storedLocale)
-      response.cookies.set("NEXT_LOCALE", "en", {
-        path: "/",
-      })
-
-    /** Redirect user to default locale */
-    return response
+    return undefined
   }
 
-  /** Adds ?lang={locale} for next-translate package */
-  request.nextUrl.searchParams.set("lang", locale)
+  function getPreferredLocale(): Language | undefined {
+    const headerValue = request.headers.get("X-Language-Preference")
+    const cookieValue = request.cookies.get("language-preference")
+    if (!headerValue && !cookieValue) return undefined
+    return (headerValue ?? cookieValue?.value)?.toLowerCase() as Language
+  }
 
-  return NextResponse.rewrite(request.nextUrl)
+  function getCurrentLocale(): Language | undefined {
+    const host = getHostname(request)
+    const relativeURL = request.nextUrl.toString().replace(host, "")
+    const locale = relativeURL.split("/")[1] as Language
+    if (!locale || locale.length !== 2) return undefined
+    if (languages.includes(locale)) return locale
+    return undefined
+  }
+
+  const current = getCurrentLocale()
+  const accepted = getAcceptedLocale()
+  const preferred = getPreferredLocale()
+
+  if (current) {
+    return { code: current, origin: "url", redirect: false }
+  }
+
+  if (preferred) {
+    return { code: preferred, origin: "preference", redirect: !current }
+  }
+
+  if (accepted) {
+    return { code: accepted, origin: "header", redirect: !current }
+  }
+
+  return { code: fallbackLanguage, origin: "fallback", redirect: !current }
+}
+
+function isExcluded(request: NextRequest): boolean {
+  const excludes = [
+    "/i18n",
+    "/images",
+    "/browserconfig.xml",
+    "/site.webmanifest",
+    "/sitemap",
+    "/robots.txt",
+    "/api",
+    "/_next/static",
+    "/_next/image",
+    "/assets",
+    "/favicon.ico",
+    "/sw.js",
+    "/service-worker.js",
+  ]
+
+  const host = getHostname(request)
+  const relativeURL = request.nextUrl.toString().replace(host, "")
+  return excludes.some((path) => relativeURL.startsWith(path))
+}
+
+function setPreference(response: NextResponse, locale: string) {
+  response.headers.set("X-Language-Preference", locale)
+  response.cookies.set("language-preference", locale)
+  return response
+}
+
+export default async function middleware(request: NextRequest) {
+  if (isExcluded(request)) return undefined
+  const locale = getLocale(request)
+
+  // redirect the user to the correct locale
+  if (locale.redirect) {
+    const host = getHostname(request)
+    const relative = request.nextUrl.toString().replace(host, "")
+    const separator = relative.startsWith("/") ? "" : "/"
+
+    const redirect = `${host}${`/${locale.code}${separator}${relative}`.replace(/(\/{2,})/g, "/")}`
+
+    return setPreference(NextResponse.redirect(redirect), locale.code)
+  }
+
+  return setPreference(NextResponse.next(), locale.code)
 }
