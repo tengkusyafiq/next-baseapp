@@ -44,4 +44,6 @@ const config = withPlugins(
   )
 )
 
+config.i18n = undefined // can remove once this is fixed on nextjs: https://github.com/aralroca/next-translate/issues/1142
+
 export default config
