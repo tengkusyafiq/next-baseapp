@@ -173,3 +173,18 @@ Development done. Pending documentation
 ### Setting up environments
 
 Development done. Pending documentation
+## TODO
+
+### Pagination Example
+
+[ref](https://swr.vercel.app/docs/pagination)
+
+### Infinite scrolling Example
+
+[ref](https://swr.vercel.app/examples/infinite-loading)
+
+### Handling form Example
+
+[ref](https://dev.to/hellodemola/handle-form-better-in-nextjs-with-react-hook-form-3o61)
+
+[ref](https://tkdodo.eu/blog/react-query-and-forms)
