@@ -26,8 +26,6 @@ export async function updateRequestWithLocalization(request: NextRequest, locale
     response.cookies.set("NEXT_LOCALE", locale, {
       path: "/",
     })
-  // console log the locale
-  console.log("Locale:", locale)
   return response
 }
 

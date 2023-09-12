@@ -8,7 +8,6 @@ export const Link = (props: React.ComponentProps<typeof NLink> & PropsWithChildr
   const { children, href, ...linkProps } = props
   // const searchParams = useSearchParams()
   // const lang = searchParams.get("lang")
-  // console.log("lang", lang)
 
   // FOR ROUTING-BASED TRANSLATION
   // let isExternal = false

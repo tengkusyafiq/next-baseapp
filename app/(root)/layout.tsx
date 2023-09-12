@@ -28,12 +28,11 @@ export default function RootLayout({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   // set default language
-  let currentLang = searchParams?.lang || lang || "default"
+  let currentLang = searchParams?.lang || lang || "en"
   // if current lang is a list of languages, use the first one
   if (Array.isArray(currentLang)) {
     currentLang = currentLang[0]
   }
-  // console.log("lang layout", searchParams?.lang)
   return (
     <html lang={currentLang}>
       <body className="p-4">
