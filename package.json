@@ -96,6 +96,7 @@
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "concurrently": "^8.2.0",
+    "cookies-next": "^4.0.0",
     "env-cmd": "^10.1.0",
     "eslint-plugin-check-file": "^2.4.0",
     "framer-motion": "^10.12.17",

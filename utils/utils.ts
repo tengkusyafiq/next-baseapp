@@ -8,24 +8,23 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-/** function to change language in cookie,param, and query param */
+/** function to change language in cookie, param, and query param */
 export async function updateRequestWithLocalization(request: NextRequest, locale: string) {
   const langList = i18n.locales.filter((x) => x !== "default")
 
   // make sure the locale is in the accepted list
   if (!langList.includes(locale) || locale === "default") {
-    locale = "en"
+    // get from cookie
+    locale = request.cookies.get("NEXT_LOCALE")?.value || "en"
   }
 
   request.nextUrl.searchParams.set("lang", locale)
   request.nextUrl.locale = locale
-  const storedLocale = request.cookies.get("NEXT_LOCALE")?.value
   const response = NextResponse.rewrite(request.nextUrl)
-  if (!storedLocale)
-    // set default locale to the new locale
-    response.cookies.set("NEXT_LOCALE", locale, {
-      path: "/",
-    })
+  // set default locale to the new locale
+  response.cookies.set("NEXT_LOCALE", locale, {
+    path: "/",
+  })
   return response
 }
 
