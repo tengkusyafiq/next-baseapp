@@ -1,6 +1,6 @@
 "use client"
-import { useUpdateArticle } from "@/app/(root)/(modules)/articles/_data/article-data"
-import { TArticle } from "@/app/(root)/(modules)/articles/_models/t-article"
+import { useUpdateArticle } from "@/app/(modules)/articles/_data/article-data"
+import { TArticle } from "@/app/(modules)/articles/_models/t-article"
 import { Button } from "@/components/ui/button/button"
 
 export default function UpdateArticleButton({ article }: { article: TArticle }) {

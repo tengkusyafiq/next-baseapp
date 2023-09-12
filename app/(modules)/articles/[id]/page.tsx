@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import useTranslation from "next-translate/useTranslation"
-import { ArticleView } from "@/app/(root)/(modules)/articles/_components/client-components/article-viewer"
+import { ArticleView } from "@/app/(modules)/articles/_components/client-components/article-viewer"
 
 export const metadata: Metadata = {
   title: "Article",

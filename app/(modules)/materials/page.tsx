@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import MaterialList from "./_components/server-components/material-list"
-import { getAllMaterials } from "@/app/(root)/(modules)/materials/_data/material-data"
+import { getAllMaterials } from "@/app/(modules)/materials/_data/material-data"
 
 export const metadata: Metadata = {
   title: "Next.js Base App",

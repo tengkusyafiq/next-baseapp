@@ -95,7 +95,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Your project should be structured as follows:
 
 ```bash
-├── app\(root)
+├── app
 │   ├── (modules)
 │   │   ├── leave-management (example)
 │   │   │   ├── _types
@@ -132,7 +132,7 @@ Your project should be structured as follows:
 
 #### Root level
 
-1. The main app directory is in the `@/app/(root)/` folder.
+1. The main app directory is in the `@/app/` folder.
 2. For shared components, they should be in the `@/components` folder.
 3. Each shared component file should have their own folder. For example, the `Button` component should be in the `@/components/button` folder.
 4. Each shared component should have their own storybook file. For example, the `button` component should have a `button.stories.tsx` file. This way, all developers can explore the component in isolation.
@@ -142,7 +142,7 @@ Your project should be structured as follows:
 
 #### Feature level
 
-1. Each main features should be in its own folder in the `@/app/(root)/(modules)`. For example, the `articles` feature should be in the `articles` folder. Or the `leave-management` feature should be in the `leave-management` folder.
+1. Each main features should be in its own folder in the `@/app/(modules)`. For example, the `articles` feature should be in the `articles` folder. Or the `leave-management` feature should be in the `leave-management` folder.
 2. For customized components on a per feature basis, they should be in the feature directory, which is `_components`. For example, the `articles` feature should have its own `@/app/articles/_components` folder.
 
 ### When to use server side rendering VS client side rendering

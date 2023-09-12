@@ -2,7 +2,7 @@
 import axios from "axios"
 import qs from "qs"
 import useSWR from "swr"
-import { TArticle } from "@/app/(root)/(modules)/articles/_models/t-article"
+import { TArticle } from "@/app/(modules)/articles/_models/t-article"
 import { useToast } from "@/components/ui/toast/use-toast"
 
 // create an axios instance with base url and bearer token from env

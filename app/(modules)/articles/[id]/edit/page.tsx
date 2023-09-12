@@ -1,4 +1,4 @@
-import { ArticleEdit } from "@/app/(root)/(modules)/articles/_components/client-components/article-editor"
+import { ArticleEdit } from "@/app/(modules)/articles/_components/client-components/article-editor"
 
 interface Props {
   params: {
