@@ -21,15 +21,21 @@ export default function RootLayout({
   // This will be populated with nested layouts or pages
   children,
   params: { lang },
+  searchParams,
 }: {
   children: React.ReactNode
   params: { lang: string }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-
   // set default language
-  if (!lang) lang = "default"
+  let currentLang = searchParams?.lang || lang || "default"
+  // if current lang is a list of languages, use the first one
+  if (Array.isArray(currentLang)) {
+    currentLang = currentLang[0]
+  }
+  // console.log("lang layout", searchParams?.lang)
   return (
-    <html lang={lang}>
+    <html lang={currentLang}>
       <body className="p-4">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* top bar */}

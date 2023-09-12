@@ -1,4 +1,4 @@
-import { TMaterial } from "@/app/[lang]/(modules)/materials/_models/t-material"
+import { TMaterial } from "@/app/(root)/(modules)/materials/_models/t-material"
 
 export async function getAllMaterials() {
   const materials = [

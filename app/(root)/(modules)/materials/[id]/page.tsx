@@ -1,8 +1,8 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { getAllMaterials } from "@/app/[lang]/(modules)/materials/_data/material-data"
-import { TMaterial } from "@/app/[lang]/(modules)/materials/_models/t-material"
+import { getAllMaterials } from "@/app/(root)/(modules)/materials/_data/material-data"
+import { TMaterial } from "@/app/(root)/(modules)/materials/_models/t-material"
 
 export const metadata: Metadata = {
   title: "Baseapp Materials",

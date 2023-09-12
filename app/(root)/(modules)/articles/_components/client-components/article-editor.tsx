@@ -1,9 +1,9 @@
 "use client"
 import { debounce } from "lodash"
-import DeleteArticleButton from "@/app/[lang]/(modules)/articles/_components/client-components/delete-article-button"
-import UpdateArticleButton from "@/app/[lang]/(modules)/articles/_components/client-components/update-article-button"
-import { useGetArticle } from "@/app/[lang]/(modules)/articles/_data/article-data"
-import { TArticle, useArticleStore } from "@/app/[lang]/(modules)/articles/_models/t-article"
+import DeleteArticleButton from "@/app/(root)/(modules)/articles/_components/client-components/delete-article-button"
+import UpdateArticleButton from "@/app/(root)/(modules)/articles/_components/client-components/update-article-button"
+import { useGetArticle } from "@/app/(root)/(modules)/articles/_data/article-data"
+import { TArticle, useArticleStore } from "@/app/(root)/(modules)/articles/_models/t-article"
 import { Editor } from "@/components/ui/content-editor/editor"
 
 export function ArticleEdit({ articleId }: { articleId: number }) {

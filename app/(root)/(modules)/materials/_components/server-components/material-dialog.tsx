@@ -1,5 +1,5 @@
-import { linkList } from "@/app/[lang]/(modules)/materials/[id]/page"
-import { TMaterial } from "@/app/[lang]/(modules)/materials/_models/t-material"
+import { linkList } from "@/app/(root)/(modules)/materials/[id]/page"
+import { TMaterial } from "@/app/(root)/(modules)/materials/_models/t-material"
 import { Button } from "@/components/ui/button/button"
 import {
   Dialog,
