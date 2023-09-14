@@ -19,7 +19,6 @@ export const LanguageControl = ({ className }: { className?: string }) => {
   const pathname = usePathname()
   const langList = i18n.locales.filter((x) => x !== "default")
   const langLabel = i18n.localesLabel.filter((x) => x !== "Default")
-
   const currentLang = useSearchParams().get("lang") || getCookie("NEXT_LOCALE") || lang || "en"
 
   return (

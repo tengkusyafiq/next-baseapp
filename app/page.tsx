@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import Image from "next/image"
+import Image from "@/components/image-control/image"
 import { Link } from "@/components/link-control/link"
 
 export const metadata: Metadata = {

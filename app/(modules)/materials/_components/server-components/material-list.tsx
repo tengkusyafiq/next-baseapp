@@ -1,6 +1,6 @@
-import Image from "next/image"
 import MaterialDialog from "@/app/(modules)/materials/_components/server-components/material-dialog"
 import { TMaterial } from "@/app/(modules)/materials/_models/t-material"
+import Image from "@/components/image-control/image"
 import Link from "@/components/link-control/link"
 
 export default function MaterialList({ materials, className }: { materials: TMaterial[]; className: string }) {
