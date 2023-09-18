@@ -11,6 +11,13 @@
       "request": "launch",
       "type": "node-terminal"
     },
+    // run storybook: pnpm storybook
+    {
+      "command": "pnpm storybook",
+      "name": "Run storybook",
+      "request": "launch",
+      "type": "node-terminal"
+    },
     // build for production: pnpm build
     {
       "command": "pnpm build",
