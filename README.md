@@ -4,14 +4,16 @@
 
 This is an opinionated baseapp for product-ready project to be used as a starting point for your project. To start, run the following commands in your terminal:
 
-```bash
-pnpm install
-```
-
 If your machine does not have `pnpm` installed, you can install it by running the following command in your terminal, then restart your terminal.
 
 ```bash
 npm install -g pnpm
+```
+
+To install all the dependencies, run the following command in your terminal.
+
+```bash
+pnpm install
 ```
 
 To start the development server with storybook, run the following command in your terminal. This is helpful for developing components in isolation.
