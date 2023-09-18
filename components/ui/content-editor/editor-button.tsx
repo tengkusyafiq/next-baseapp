@@ -1,37 +1,26 @@
-import * as Toggle from '@radix-ui/react-toggle';
-import { ToolbarButton } from '@radix-ui/react-toolbar';
+import * as Toggle from "@radix-ui/react-toggle"
+import { ToolbarButton } from "@radix-ui/react-toolbar"
 
 type Props = {
-  title: string;
-  onPress: () => void;
-  icon: React.ReactNode;
-};
+  title: string
+  onPress: () => void
+  icon: React.ReactNode
+}
 
 export function EditorButton({ icon, title, onPress }: Props) {
   return (
     <ToolbarButton title={title} className={className} onClick={onPress}>
       {icon}
     </ToolbarButton>
-  );
+  )
 }
 
-export function EditorToggle({
-  icon,
-  title,
-  active,
-  onPress,
-}: Props & { active: boolean }) {
+export function EditorToggle({ icon, title, active, onPress }: Props & { active: boolean }) {
   return (
-    <Toggle.Toggle
-      asChild
-      title={title}
-      pressed={active}
-      className={className}
-      onPressedChange={onPress}
-    >
+    <Toggle.Toggle asChild title={title} pressed={active} className={className} onPressedChange={onPress}>
       <ToolbarButton>{icon}</ToolbarButton>
     </Toggle.Toggle>
-  );
+  )
 }
 
 const className =
