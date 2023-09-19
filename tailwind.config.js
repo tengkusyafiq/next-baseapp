@@ -3,6 +3,32 @@ module.exports = {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   theme: {
+    screens: {
+      xs: { max: "639px" }, // a.k.a small-phones
+      sm: { min: "640px", max: "767px" }, // a.k.a phones
+      // => @media (min-width: 640px and max-width: 767px) { ... }
+
+      md: { min: "768px", max: "1023px" }, // a.k.a tablets
+      // => @media (min-width: 768px and max-width: 1023px) { ... }
+
+      lg: { min: "1024px", max: "1279px" }, // a.k.a laptops
+      // => @media (min-width: 1024px and max-width: 1279px) { ... }
+
+      xl: { min: "1280px", max: "1535px" }, // a.k.a desktops
+      // => @media (min-width: 1280px and max-width: 1535px) { ... }
+
+      "2xl": { min: "1536px" }, // a.k.a big-desktops
+      // => @media (min-width: 1536px) { ... }
+
+      // also can use aliases for: small-phones, phones, tablets, laptops, desktops, big-desktops
+
+      "small-phones": { max: "639px" }, // a.k.a xs
+      phones: { min: "640px", max: "767px" }, // a.k.a sm
+      tablets: { min: "768px", max: "1023px" }, // a.k.a md
+      laptops: { min: "1024px", max: "1279px" }, // a.k.a lg
+      desktops: { min: "1280px", max: "1535px" }, // a.k.a xl
+      "big-desktops": { min: "1536px" }, // a.k.a 2xl
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -11,6 +37,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        poppins: ["var(--font-poppins)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

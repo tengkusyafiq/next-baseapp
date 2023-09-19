@@ -26,6 +26,9 @@ const meta: Meta<typeof Button> = {
       type: "figma",
       url: "",
     },
+    darkMode: {
+      stylePreview: true,
+    },
   },
 }
 

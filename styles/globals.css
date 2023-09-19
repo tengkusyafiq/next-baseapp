@@ -1,11 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     /* Design System Color */
     /* please use hsl format. convert it here: https://www.w3schools.com/colors/colors_converter.asp */
+    /* don't use this color right away, use the standardized UI variables instead, so it  would cater for light/dark theme */
     --normal-white: 0 0% 100%; /* #ffffff */
     --light-gray-1: 210 40% 96.1%; /* #f1f5f9 */
     --light-gray-2: 214.3 31.8% 91.4%; /* #e2e8f0 */
@@ -55,31 +56,31 @@
   .dark {
     --background: var(--normal-black);
     --foreground: var(--light-gray-3);
- 
+
     --muted: var(--light-black-2);
     --muted-foreground: var(--light-gray-4);
- 
+
     --popover: var(--normal-black);
     --popover-foreground: var(--light-gray-3);
- 
+
     --card: var(--normal-black);
     --card-foreground: var(--light-gray-3);
- 
+
     --border: var(--light-black-2);
     --input: var(--light-black-2);
- 
+
     --primary: var(--light-gray-3);
     --primary-foreground: var(--light-black-1);
- 
+
     --secondary: var(--light-black-2);
     --secondary-foreground: var(--light-gray-3);
- 
+
     --accent: var(--light-black-2);
     --accent-foreground: var(--light-gray-3);
- 
+
     --destructive: var(--dark-red-1);
     --destructive-foreground: var(--light-red-1);
- 
+
     --ring: var(--light-black-2);
   }
 }
@@ -88,8 +89,155 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
+  /* typography design system */
+  /* setup h1 */
+  h1 {
+    /* font: poppins */
+    /* small-phones: 21px weight 600 */
+    /* phones: 21px weight 600 */
+    /* tablets: 25px weight 600 */
+    /* desktops: 25px weight 600 */
+    /* big-desktops: 25px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[21px] small-phones:font-[600]
+    phones:text-[21px] phones:font-[600]
+    tablets:text-[25px] tablets:font-[600]
+    laptops:text-[25px] laptops:font-[600]
+    desktops:text-[25px] desktops:font-[600]
+    big-desktops:text-[25px] big-desktops:font-[600];
+  }
+  /* setup h2 */
+  h2 {
+    /* font: poppins */
+    /* small-phones: 20px weight 600 */
+    /* phones: 20px weight 600 */
+    /* tablets: 23px weight 600 */
+    /* desktops: 23px weight 600 */
+    /* big-desktops: 23px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[20px] small-phones:font-[600]
+    phones:text-[20px] phones:font-[600]
+    tablets:text-[23px] tablets:font-[600]
+    laptops:text-[23px] laptops:font-[600]
+    desktops:text-[23px] desktops:font-[600]
+    big-desktops:text-[23px] big-desktops:font-[600];
+  }
+  /* setup h3 */
+  h3 {
+    /* font: poppins */
+    /* small-phones: 18px weight 600 */
+    /* phones: 18px weight 600 */
+    /* tablets: 21px weight 600 */
+    /* desktops: 21px weight 600 */
+    /* big-desktops: 21px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[18px] small-phones:font-[600]
+    phones:text-[18px] phones:font-[600]
+    tablets:text-[21px] tablets:font-[600]
+    laptops:text-[21px] laptops:font-[600]
+    desktops:text-[21px] desktops:font-[600]
+    big-desktops:text-[21px] big-desktops:font-[600];
+  }
+  /* setup h4 */
+  h4 {
+    /* font: poppins */
+    /* small-phones: 17px weight 600 */
+    /* phones: 17px weight 600 */
+    /* tablets: 19px weight 600 */
+    /* desktops: 19px weight 600 */
+    /* big-desktops: 19px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[17px] small-phones:font-[600]
+    phones:text-[17px] phones:font-[600]
+    tablets:text-[19px] tablets:font-[600]
+    laptops:text-[19px] laptops:font-[600]
+    desktops:text-[19px] desktops:font-[600]
+    big-desktops:text-[19px] big-desktops:font-[600];
+  }
+  /* setup h5 */
+  h5 {
+    /* font: poppins */
+    /* small-phones: 15px weight 600 */
+    /* phones: 15px weight 600 */
+    /* tablets: 18px weight 600 */
+    /* desktops: 18px weight 600 */
+    /* big-desktops: 18px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[15px] small-phones:font-[600]
+    phones:text-[15px] phones:font-[600]
+    tablets:text-[18px] tablets:font-[600]
+    laptops:text-[18px] laptops:font-[600]
+    desktops:text-[18px] desktops:font-[600]
+    big-desktops:text-[18px] big-desktops:font-[600];
+  }
+  /* setup h6 */
+  h6 {
+    /* font: poppins */
+    /* small-phones: 14px weight 600 */
+    /* phones: 14px weight 600 */
+    /* tablets: 16px weight 600 */
+    /* desktops: 16px weight 600 */
+    /* big-desktops: 16px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[14px] small-phones:font-[600]
+    phones:text-[14px] phones:font-[600]
+    tablets:text-[16px] tablets:font-[600]
+    laptops:text-[16px] laptops:font-[600]
+    desktops:text-[16px] desktops:font-[600]
+    big-desktops:text-[16px] big-desktops:font-[600];
+  }
+  /* setup p */
+  p {
+    /* font: poppins */
+    /* small-phones: 12px weight 400 */
+    /* phones: 12px weight 400 */
+    /* tablets: 14px weight 600 */
+    /* desktops: 14px weight 600 */
+    /* big-desktops: 14px weight 600 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[12px] small-phones:font-[400]
+    phones:text-[12px] phones:font-[400]
+    tablets:text-[14px] tablets:font-[600]
+    laptops:text-[14px] laptops:font-[600]
+    desktops:text-[14px] desktops:font-[600]
+    big-desktops:text-[14px] big-desktops:font-[600];
+  }
+  /* setup small */
+  small {
+    /* font: poppins */
+    /* small-phones: 11px weight 400 */
+    /* phones: 11px weight 400 */
+    /* tablets: 12px weight 400 */
+    /* desktops: 12px weight 400 */
+    /* big-desktops: 12px weight 400 */
+    @apply
+    font-poppins
+    text-foreground
+    small-phones:text-[11px] small-phones:font-[400]
+    phones:text-[11px] phones:font-[400]
+    tablets:text-[12px] tablets:font-[400]
+    laptops:text-[12px] laptops:font-[400]
+    desktops:text-[12px] desktops:font-[400]
+    big-desktops:text-[12px] big-desktops:font-[400];
+  }
+  a {
+    @apply
+    text-gray-600
+    hover:text-blue-600;
   }
 }
 

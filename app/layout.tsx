@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { Poppins } from "next/font/google"
 import { TopBar } from "@/components/layouts/top-bar"
 import { ThemeProvider } from "@/components/theme-control/theme-provider"
 import { Toaster } from "@/components/ui/toast/toaster"
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
     icon: "/icon.png",
   },
 }
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: "400",
+})
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -34,7 +41,7 @@ export default function RootLayout({
     currentLang = currentLang[0]
   }
   return (
-    <html lang={currentLang}>
+    <html lang={currentLang} className={`${poppins.variable}`}>
       <body className="p-4">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* top bar */}

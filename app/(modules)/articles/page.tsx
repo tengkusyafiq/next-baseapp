@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <>
       <section className="">
-        <div className="mx-auto grid max-w-screen-xl px-4 text-center">
+        <div className="mx-auto grid px-4 text-center">
           <div className="mx-auto place-self-center">
             <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               {t("knowledgebase")} 📖

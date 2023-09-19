@@ -5,6 +5,7 @@ const config: StorybookConfig = {
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     // our components
+    "../components/**/*.mdx",
     "../components/**/*.stories.mdx",
     "../components/**/*.stories.@(js|jsx|ts|tsx)",
   ],
@@ -12,9 +13,11 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-viewport",
     "storybook-addon-designs",
     "@storybook/addon-storysource",
     "@storybook/addon-onboarding",
+    "storybook-dark-mode",
   ],
   framework: {
     name: "@storybook/nextjs",

@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <section className="">
-        <div className="mx-auto grid max-w-screen-xl px-4 text-center">
+        <div className="mx-auto grid px-4 text-center">
           <div className="mx-auto place-self-center">
             <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
               New Article ✏️
@@ -23,7 +23,7 @@ export default function Page() {
         </div>
       </section>
       <section className="">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
+        <div className="mx-auto px-4 py-8 sm:py-16 lg:px-6">
           {/* put button on the right */}
           <div className="flex justify-end pb-4">
             <Button size={"sm"} variant={"secondary"} onClick={useCreateArticle(getArticle)}>
