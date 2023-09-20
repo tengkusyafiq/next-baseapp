@@ -18,7 +18,6 @@ const config = withPlugins(
       reactStrictMode: true,
       experimental: {
         instrumentationHook: true,
-        appDir: true,
         mdxRs: true,
       },
       rewrites() {
@@ -44,6 +43,5 @@ const config = withPlugins(
   )
 )
 
-// config.i18n = undefined // can remove once this is fixed on nextjs: https://github.com/aralroca/next-translate/issues/1142
 
 export default config
