@@ -1,7 +1,6 @@
 import { Metadata } from "next"
 import Image from "@/components/image-control/image"
 import { Link } from "@/components/link-control/link"
-import { Button } from "@/components/ui/button/button"
 
 export const metadata: Metadata = {
   title: "Home",
